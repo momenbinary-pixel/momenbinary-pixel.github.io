@@ -1,0 +1,58 @@
+name: Optimize Images
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'images/**'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.gif'
+  workflow_dispatch:
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Image Optimization Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jpegoptim optipng pngquant gifsicle
+          npm install -g sharp imagemin-cli
+      
+      - name: Optimize JPG/JPEG Images
+        run: |
+          echo "🖼️ Optimizing JPG images..."
+          find . -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) -exec jpegoptim --strip-all --max=90 {} \;
+      
+      - name: Optimize PNG Images
+        run: |
+          echo "🖼️ Optimizing PNG images..."
+          find . -type f -iname "*.png" -exec optipng -o7 {} \;
+      
+      - name: Optimize GIF Images
+        run: |
+          echo "🖼️ Optimizing GIF images..."
+          find . -type f -iname "*.gif" -exec gifsicle --batch --optimize=3 {} \;
+      
+      - name: Create WebP Versions
+        run: |
+          echo "🔄 Creating WebP versions..."
+          find . -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | head -20 | while read file; do
+            webp_file="${file%.*}.webp"
+            if command -v cwebp &> /dev/null; then
+              cwebp -q 80 "$file" -o "$webp_file"
+            fi
+          done
+      
+      - name: Commit Optimized Images
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "Optimize images [skip ci]" || echo "No changes to commit"
+          git push || echo "Nothing to push"
