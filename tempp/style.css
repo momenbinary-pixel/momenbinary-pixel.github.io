@@ -1,0 +1,761 @@
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', 'Amiri', sans-serif;
+    background-color: #fef6e4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* الشاشات */
+.screen {
+    display: none;
+    min-height: 100vh;
+    background: #fef6e4 url('images/h.gif') center center/cover no-repeat fixed;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* رأس الصفحة */
+header {
+    background-color: #8b4513;
+    color: #f0e6d2;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-btn {
+    background-color: #d4a762;
+    color: #5a3921;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #f0c674;
+    transform: translateY(-2px);
+}
+
+/* الصورة الرئيسية */
+.main-image {
+    width: 100%;
+    height: 300px;
+    background-color: #d4a762;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.image-placeholder {
+    text-align: center;
+    color: #5a3921;
+}
+
+.image-placeholder i {
+    font-size: 5rem;
+    margin-bottom: 15px;
+}
+
+.image-placeholder p {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.image-placeholder.small {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+}
+
+.image-placeholder.small i {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+/* الأزرار */
+.btn-primary {
+    background-color: #5a3921;
+    color: #f0e6d2;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #8b4513;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.btn-secondary {
+    background-color: #d4a762;
+    color: #5a3921;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #f0c674;
+    transform: translateY(-2px);
+}
+
+/* عناصر التحكم بالموسيقى */
+.music-controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* بطاقات التنقل */
+.navigation-preview {
+    margin-top: 40px;
+}
+
+.navigation-preview h2 {
+    text-align: center;
+    color: #5a3921;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.nav-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.nav-card {
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.nav-card:hover {
+    background-color: #f0c674;
+    transform: translateY(-5px);
+    border-color: #5a3921;
+}
+
+.nav-card i {
+    font-size: 2rem;
+    color: #5a3921;
+    margin-bottom: 10px;
+}
+
+.nav-card span {
+    font-weight: bold;
+    color: #5a3921;
+}
+
+/* البطاقات العامة */
+.content-card {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-image {
+    width: 100%;
+    height: 200px;
+    background-color: #d4a762;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.content-text h2 {
+    color: #5a3921;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.content-text p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* قسم الجولة */
+.tour-items {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.tour-item {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tour-image {
+    width: 100%;
+    height: 180px;
+    background-color: #d4a762;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tour-content h3 {
+    color: #5a3921;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.tour-content p {
+    margin-bottom: 15px;
+}
+
+.more-info {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #e8d0a9;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* قسم الألعاب */
+.games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.game-card {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-card h3 {
+    color: #5a3921;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.game-card p {
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+/* منطقة الألعاب التفاعلية */
+.game-area {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.game {
+    text-align: center;
+}
+
+.game h3 {
+    color: #5a3921;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.game p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* لعبة المطابقة */
+.matching-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.matching-images, .matching-targets {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.draggable {
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: move;
+    text-align: center;
+    width: 120px;
+    transition: all 0.3s;
+}
+
+.draggable:hover {
+    background-color: #f0c674;
+    transform: translateY(-5px);
+}
+
+.target {
+    background-color: #d4a762;
+    border-radius: 10px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    font-weight: bold;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* لعبة النجوم والإجابات */
+.stars-container, .answer-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.star-option, .answer-option {
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 120px;
+    transition: all 0.3s;
+}
+
+.star-option:hover, .answer-option:hover {
+    background-color: #f0c674;
+    transform: translateY(-5px);
+}
+
+.color-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+}
+
+.red { background-color: #e74c3c; }
+.blue { background-color: #3498db; }
+.gold { background-color: #f1c40f; }
+.green { background-color: #2ecc71; }
+
+.feedback {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* قسم المختبر */
+.experiments {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.experiment h3 {
+    color: #5a3921;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-text h4 {
+    color: #8b4513;
+    margin: 15px 0 10px;
+}
+
+.content-text ul, .content-text ol {
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+.content-text li {
+    margin-bottom: 8px;
+}
+
+/* قسم القصص */
+.stories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.story-card {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.story-image {
+    width: 100%;
+    height: 150px;
+    background-color: #d4a762;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.story-content h3 {
+    color: #5a3921;
+    margin-bottom: 10px;
+}
+
+.story-content p {
+    margin-bottom: 15px;
+    min-height: 60px;
+}
+
+/* مشغل القصص */
+.story-content-full {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+}
+
+.story-content-full h3 {
+    color: #5a3921;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.story-content-full p {
+    margin-bottom: 15px;
+    text-align: right;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.audio-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* قسم الإنجازات */
+.achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.achievement-card {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 2.5rem;
+}
+
+.star { background-color: #f1c40f; color: #fff; }
+.crown { background-color: #8b4513; color: #f0e6d2; }
+.eye { background-color: #3498db; color: #fff; }
+
+.achievement-card h3 {
+    color: #5a3921;
+    margin-bottom: 10px;
+}
+
+.achievement-card p {
+    margin-bottom: 20px;
+    min-height: 40px;
+}
+
+/* الشهادة */
+.certificate-content {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    margin: 30px 0;
+    border: 10px solid #8b4513;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.certificate-content h2 {
+    color: #8b4513;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.certificate-body h3 {
+    color: #5a3921;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.certificate-body p {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.child-name {
+    margin: 20px 0;
+}
+
+#child-name-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+.achievement-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.achievement-icon.earned {
+    transform: scale(1.2);
+}
+
+.certificate-prompt {
+    background-color: #f5ebd8;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.certificate-prompt h3 {
+    color: #5a3921;
+    margin-bottom: 15px;
+}
+
+.certificate-prompt p {
+    margin-bottom: 20px;
+}
+
+/* قسم المعلمة */
+.teacher-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.teacher-section h3 {
+    color: #5a3921;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.teacher-section ul {
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+.teacher-section li {
+    margin-bottom: 10px;
+}
+
+.printable-activities {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.printable-activity {
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.activity-icon {
+    font-size: 2.5rem;
+    color: #5a3921;
+    margin-bottom: 10px;
+}
+
+.printable-activity h4 {
+    color: #5a3921;
+    margin-bottom: 15px;
+}
+
+/* تصميم متجاوب */
+@media (min-width: 768px) {
+    .content-card {
+        flex-direction: row;
+        gap: 30px;
+    }
+    
+    .content-image {
+        width: 40%;
+        height: auto;
+        margin-bottom: 0;
+    }
+    
+    .content-text {
+        width: 60%;
+    }
+    
+    .tour-item {
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .tour-image {
+        width: 40%;
+        height: auto;
+        margin-bottom: 0;
+    }
+    
+    .tour-content {
+        width: 60%;
+    }
+}
+
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .nav-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .games-container, .stories, .achievements {
+        grid-template-columns: 1fr;
+    }
+    
+    .matching-images, .matching-targets, .stars-container, .answer-options {
+        flex-direction: column;
+        align-items: center;
+    }
+}
