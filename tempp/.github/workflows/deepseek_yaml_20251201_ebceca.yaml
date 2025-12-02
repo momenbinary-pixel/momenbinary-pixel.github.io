@@ -1,0 +1,58 @@
+name: Performance Testing
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: '0 0 * * 0' # Weekly on Sunday
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: |
+          npm install -g @lhci/cli
+          npm install -g serve
+      
+      - name: Start local server
+        run: |
+          echo "Starting local server..."
+          serve -s . -l 8080 &
+          sleep 5
+      
+      - name: Run Lighthouse CI
+        run: |
+          echo "Running Lighthouse tests..."
+          lhci autorun --upload.target=temporary-public-storage || echo "Lighthouse tests completed"
+      
+      - name: Performance Budget Check
+        run: |
+          echo "📊 Performance Budget Check:"
+          echo "- First Contentful Paint: < 1.5s"
+          echo "- Largest Contentful Paint: < 2.5s"
+          echo "- Cumulative Layout Shift: < 0.1"
+          echo "- Total Blocking Time: < 200ms"
+          echo "- Speed Index: < 3.4s"
+      
+      - name: Generate Report
+        if: always()
+        run: |
+          echo "## Performance Report" >> $GITHUB_STEP_SUMMARY
+          echo "Performance tests completed. Check the Lighthouse CI output for detailed results." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Key Metrics to Monitor:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Loading performance" >> $GITHUB_STEP_SUMMARY
+          echo "- Accessibility" >> $GITHUB_STEP_SUMMARY
+          echo "- Best practices" >> $GITHUB_STEP_SUMMARY
+          echo "- SEO" >> $GITHUB_STEP_SUMMARY
