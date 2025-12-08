@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>متحف الطب و الفلك في الحضارة المصرية القديمة</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Amiri:wght@400;700&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <!-- شريط التحميل -->
+    <div class="loader">
+      <div class="loader-content">
+        <div class="pyramid-loader">
+          <div class="pyramid-side"></div>
+          <div class="pyramid-side"></div>
+          <div class="pyramid-side"></div>
+          <div class="pyramid-side"></div>
+        </div>
+        <p>جارٍ التحميل...</p>
+      </div>
+    </div>
+
+    <!-- زر الموسيقى -->
+    <button id="music-toggle" class="music-btn">
+      <i class="fas fa-music"></i>
+      <span class="sound-text">تشغيل الموسيقى</span>
+    </button>
+
+    <!-- زر الشهادة -->
+    <button id="certificate-btn" class="certificate-btn">
+      <i class="fas fa-award"></i>
+    </button>
+
+    <!-- القائمة الرئيسية -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <a href="#" class="logo">
+          <img src="assets/logo.png" alt="شعار الموقع" />
+          <span>
+            متحف الطب و الفلك في الحضارة المصرية القديمة
+            </span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="nav-menu">
+          <li>
+            <a href="#home" class="nav-link"
+              ><i class="fas fa-home"></i> الرئيسية</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="nav-link"
+              ><i class="fas fa-question-circle"></i> من نحن؟</a
+            >
+          </li>
+          <li>
+            <a href="#tour" class="nav-link"
+              ><i class="fas fa-video"></i> جولة المتحف</a
+            >
+          </li>
+          <li>
+            <a href="#games" class="nav-link"
+              ><i class="fas fa-gamepad"></i> الألعاب</a
+            >
+          </li>
+          <li>
+            <a href="#lab" class="nav-link"
+              ><i class="fas fa-flask"></i> مختبر الفراعنة</a
+            >
+          </li>
+          <li>
+            <a href="#stories" class="nav-link"
+              ><i class="fas fa-book-open"></i> قصص المتحف</a
+            >
+          </li>
+          <li>
+            <a href="#teacher" class="nav-link"
+              ><i class="fas fa-chalkboard-teacher"></i> قسم المعلمة</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- الصفحة الرئيسية -->
+    <section id="home" class="section home-section">
+      <div class="home-content">
+        <div class="welcome-text">
+          <h1 class="main-title">
+            مرحبًا في <span>متحف المصريين القدماء</span>
+          </h1>
+          <p class="subtitle">هنا تبدأ رحلتك الممتعة لاكتشاف أسرار الفراعنة!</p>
+          <div class="start-adventure">
+            <button id="start-btn" class="start-btn">
+              <i class="fas fa-play-circle"></i>
+              اضغط لتبدأ المغامرة!
+            </button>
+            <div class="hint">اضغط على الزر لبدء رحلتك المثيرة</div>
+          </div>
+        </div>
+        <div class="museum-image">
+          <div class="image-container">
+            <img src="assets/museum.jpg" alt="متحف المصريين القدماء" />
+            <div class="floating-objects">
+              <div class="floating-object obj1">
+                <i class="fas fa-crown"></i>
+              </div>
+              <div class="floating-object obj2">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="floating-object obj3"><i class="fas fa-eye"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- قسم من نحن -->
+    <section id="about" class="section about-section">
+      <div class="section-header">
+        <h2><i class="fas fa-question-circle"></i> من نحن؟</h2>
+        <p>تعرف على متحف المصريين القدماء</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <div class="speech-bubble">
+            <p>مرحبًا! أنا <span>توتو</span>، مرشدك في هذه الرحلة.</p>
+          </div>
+          <div class="about-description">
+            <p>
+              "هنا ستتعرّف على أسرار الفراعنة، كيف عاشوا؟ كيف داووا المرضى؟ وكيف
+              كانوا يقرؤون السماء والنجوم!"
+            </p>
+            <p>
+              سوف تأخذك هذه الرحلة في رحلة عبر الزمن لتتعرف على الحضارة المصرية
+              القديمة بطريقة ممتعة وتفاعلية.
+            </p>
+          </div>
+        </div>
+        <div class="about-image">
+          <div class="guide-character">
+            <div class="character-img">
+              <i class="fas fa-child"></i>
+            </div>
+            <div class="character-name">توتو</div>
+            <div class="character-role">مرشد المتحف</div>
+          </div>
+        </div>
+      </div>
+      <div class="fun-facts">
+        <h3>حقائق ممتعة عن الفراعنة</h3>
+        <div class="facts-container">
+          <div class="fact-card">
+            <i class="fas fa-heartbeat"></i>
+            <h4>الأطباء الماهرون</h4>
+            <p>
+              كان الأطباء المصريون القدماء يستخدمون أدوات طبية متطورة في وقتهم!
+            </p>
+          </div>
+          <div class="fact-card">
+            <i class="fas fa-star-and-crescent"></i>
+            <h4>علم الفلك</h4>
+            <p>
+              المصريون القدماء عرفوا الفلك قبل آلاف السنين وابتكروا التقويم!
+            </p>
+          </div>
+          <div class="fact-card">
+            <i class="fas fa-pen-fancy"></i>
+            <h4>اللغة الهيروغليفية</h4>
+            <p>كان للفراعنة لغة خاصة بهم مكتوبة بالرموز والصور!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم جولة المتحف -->
+    <section id="tour" class="section tour-section">
+      <div class="section-header">
+        <h2><i class="fas fa-video"></i> جولة داخل المتحف</h2>
+        <p>استمتع بجولة افتراضية في أقسام المتحف</p>
+      </div>
+
+      <div class="tour-controls">
+        <button id="prev-room" class="tour-btn">
+          <i class="fas fa-arrow-right"></i> السابق
+        </button>
+        <button id="next-room" class="tour-btn">
+          التالي <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+
+      <div class="tour-container">
+        <div class="tour-room active" data-room="1">
+          <div class="room-image">
+            <img src="assets/mummification-room.jpg" alt="غرفة التحنيط" />
+            <button class="learn-more-btn" data-info="mummification">
+              اضغط لتعرف أكثر
+            </button>
+          </div>
+          <div class="room-info">
+            <h3>غرفة التحنيط</h3>
+            <p class="room-audio-text">
+              "هذه غرفة التحنيط! كان المصريون القدماء يحفظون أجساد الموتى بهذه
+              الطريقة."
+            </p>
+            <button class="audio-btn" data-audio="mummification">
+              <i class="fas fa-play-circle"></i> استمع للشرح
+            </button>
+          </div>
+        </div>
+
+        <div class="tour-room" data-room="2">
+          <div class="room-image">
+            <img src="assets/medical-room.jpg" alt="غرفة الطب" />
+            <button class="learn-more-btn" data-info="medical">
+              اضغط لتعرف أكثر
+            </button>
+          </div>
+          <div class="room-info">
+            <h3>غرفة الطب</h3>
+            <p class="room-audio-text">
+              "هنا نرى أداة كان يستخدمها الطبيب في الحضارة القديمة!"
+            </p>
+            <button class="audio-btn" data-audio="medical">
+              <i class="fas fa-play-circle"></i> استمع للشرح
+            </button>
+          </div>
+        </div>
+
+        <div class="tour-room" data-room="3">
+          <div class="room-image">
+            <img src="assets/astronomy-room.jpg" alt="غرفة الفلك" />
+            <button class="learn-more-btn" data-info="astronomy">
+              اضغط لتعرف أكثر
+            </button>
+          </div>
+          <div class="room-info">
+            <h3>غرفة الفلك</h3>
+            <p class="room-audio-text">
+              "تخيّل! المصريون القدماء عرفوا الفلك قبل آلاف السنين!"
+            </p>
+            <button class="audio-btn" data-audio="astronomy">
+              <i class="fas fa-play-circle"></i> استمع للشرح
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-indicators">
+        <span class="indicator active" data-room="1"></span>
+        <span class="indicator" data-room="2"></span>
+        <span class="indicator" data-room="3"></span>
+      </div>
+    </section>
+
+    <!-- قسم الألعاب -->
+    <section id="games" class="section games-section">
+      <div class="section-header">
+        <h2><i class="fas fa-gamepad"></i> الألعاب التفاعلية</h2>
+        <p>استمتع بألعاب تعليمية ممتعة</p>
+      </div>
+
+      <div class="games-container">
+        <!-- لعبة المطابقة -->
+        <div class="game-card" id="matching-game">
+          <div class="game-icon">
+            <i class="fas fa-puzzle-piece"></i>
+          </div>
+          <h3>لعبة المطابقة</h3>
+          <p>مطابقة صورة الأداة باسمها</p>
+          <button class="play-game-btn" data-game="matching">العب الآن</button>
+        </div>
+
+        <!-- لعبة أين النجمة -->
+        <div class="game-card" id="star-game">
+          <div class="game-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3>لعبة أين النجمة؟</h3>
+          <p>اختر النجمة الصحيحة المرتبطة برع أو تحوت</p>
+          <button class="play-game-btn" data-game="star">العب الآن</button>
+        </div>
+
+        <!-- سؤال اليوم -->
+        <div class="game-card" id="daily-question">
+          <div class="game-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <h3>سؤال اليوم</h3>
+          <p>ما لون تاج الملك توت عنخ آمون؟</p>
+          <button class="play-game-btn" data-game="question">أجب الآن</button>
+        </div>
+      </div>
+
+      <!-- لوحة الألعاب التفاعلية -->
+      <div class="game-board" id="game-board">
+        <!-- محتوى اللعبة سيتم تحميله هنا -->
+      </div>
+
+      <!-- نظام المكافآت -->
+      <div class="achievements">
+        <h3>بطاقات الإنجاز</h3>
+        <div class="achievements-container">
+          <div class="achievement" id="star-achievement">
+            <i class="fas fa-star"></i>
+            <p>نجمة</p>
+            <div class="achievement-lock"><i class="fas fa-lock"></i></div>
+          </div>
+          <div class="achievement" id="crown-achievement">
+            <i class="fas fa-crown"></i>
+            <p>تاج</p>
+            <div class="achievement-lock"><i class="fas fa-lock"></i></div>
+          </div>
+          <div class="achievement" id="eye-achievement">
+            <i class="fas fa-eye"></i>
+            <p>عين حورس</p>
+            <div class="achievement-lock"><i class="fas fa-lock"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم مختبر الفراعنة -->
+    <section id="lab" class="section lab-section">
+      <div class="section-header">
+        <h2><i class="fas fa-flask"></i> مختبر الفراعنة التجريبي</h2>
+        <p>جرب تجارب آمنة في المنزل</p>
+      </div>
+
+      <div class="experiments-container">
+        <div class="experiment-card">
+          <div class="experiment-image">
+            <i class="fas fa-sun"></i>
+          </div>
+          <h3>صنع مزولة</h3>
+          <p>استخدم كوبًا وعصا لصنع مزولة كما كان يفعل المصريون القدماء</p>
+          <button class="experiment-instructions-btn" data-experiment="sundial">
+            شاهد التعليمات
+          </button>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-image">
+            <i class="fas fa-apple-alt"></i>
+          </div>
+          <h3>تجربة التحنيط</h3>
+          <p>جرب فكرة التحنيط باستخدام ملح عادي على قطعة تفاح</p>
+          <button
+            class="experiment-instructions-btn"
+            data-experiment="mummification">
+            شاهد التعليمات
+          </button>
+        </div>
+
+        <div class="experiment-card">
+          <div class="experiment-image">
+            <i class="fas fa-palette"></i>
+          </div>
+          <h3>الألوان الطبيعية</h3>
+          <p>تكوين ألوان طبيعية من فواكه مثل البنجر أو الكركم</p>
+          <button class="experiment-instructions-btn" data-experiment="colors">
+            شاهد التعليمات
+          </button>
+        </div>
+      </div>
+
+      <div class="experiment-instructions" id="experiment-instructions">
+        <!-- التعليمات ستظهر هنا -->
+      </div>
+    </section>
+
+    <!-- قسم القصص -->
+    <section id="stories" class="section stories-section">
+      <div class="section-header">
+        <h2><i class="fas fa-book-open"></i> قصص المتحف</h2>
+        <p>استمع إلى قصص رائعة عن شخصيات مصرية قديمة</p>
+      </div>
+
+      <div class="stories-container">
+        <div class="story-card" data-story="imhotep">
+          <div class="story-image">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <h3>الطبيب إيمحوتب</h3>
+          <p>قصة الطبيب العبقري الذي كان أول مهندس معماري في التاريخ</p>
+          <button class="read-story-btn" data-story="imhotep">
+            <i class="fas fa-play-circle"></i> استمع للقصة
+          </button>
+        </div>
+
+        <div class="story-card" data-story="thoth">
+          <div class="story-image">
+            <i class="fas fa-moon"></i>
+          </div>
+          <h3>العالم تحوت</h3>
+          <p>قصة إله الحكمة والمعرفة الذي علم المصريين الكتابة والحساب</p>
+          <button class="read-story-btn" data-story="thoth">
+            <i class="fas fa-play-circle"></i> استمع للقصة
+          </button>
+        </div>
+
+        <div class="story-card" data-story="tutankhamun">
+          <div class="story-image">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h3>الملك توت عنخ آمون</h3>
+          <p>قصة الفرعون الصغير صاحب المقبرة الشهيرة</p>
+          <button class="read-story-btn" data-story="tutankhamun">
+            <i class="fas fa-play-circle"></i> استمع للقصة
+          </button>
+        </div>
+      </div>
+
+      <div class="story-player" id="story-player">
+        <!-- مشغل القصص -->
+      </div>
+    </section>
+
+    <!-- قسم المعلمة -->
+    <section id="teacher" class="section teacher-section">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-chalkboard-teacher"></i> قسم للمعلمة أو ولي الأمر
+        </h2>
+        <p>موارد تعليمية إضافية</p>
+      </div>
+
+      <div class="teacher-content">
+        <div class="teacher-resource">
+          <h3><i class="fas fa-book"></i> دليل استخدام الموقع</h3>
+          <p>تعرف على كيفية الاستفادة القصوى من الموقع في العملية التعليمية</p>
+          <button class="download-btn" data-resource="guide">
+            تحميل الدليل
+          </button>
+        </div>
+
+        <div class="teacher-resource">
+          <h3><i class="fas fa-lightbulb"></i> أفكار للربط مع الدروس</h3>
+          <p>أفكار لربط الزيارة الافتراضية بدرس داخل الصف</p>
+          <button class="download-btn" data-resource="ideas">
+            عرض الأفكار
+          </button>
+        </div>
+
+        <div class="teacher-resource">
+          <h3><i class="fas fa-print"></i> أنشطة جاهزة للطباعة</h3>
+          <p>أنشطة مثل تلوين المومياء أو تجميع الهرم</p>
+          <div class="print-activities">
+            <button class="activity-btn" data-activity="coloring">
+              تلوين المومياء
+            </button>
+            <button class="activity-btn" data-activity="pyramid">
+              تجميع الهرم
+            </button>
+            <button class="activity-btn" data-activity="hieroglyphics">
+              كتابة هيروغليفية
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="resource-display" id="resource-display">
+        <!-- الموارد ستظهر هنا -->
+      </div>
+    </section>
+
+    <!-- الشهادة -->
+    <div class="certificate-modal" id="certificate-modal">
+      <div class="certificate-content">
+        <div class="certificate-header">
+          <h2>شهادة إنجاز</h2>
+          <button class="close-certificate" id="close-certificate">
+            &times;
+          </button>
+        </div>
+        <div class="certificate-body">
+          <div class="certificate-title">
+            <h3>⭐ "عالم صغير في حضارة مصر القديمة" ⭐</h3>
+          </div>
+          <div class="certificate-text">
+            <p>هذه الشهادة تمنح لـ:</p>
+            <div class="certificate-name">
+              <input type="text" id="child-name" placeholder="أدخل اسمك هنا" />
+            </div>
+            <p>
+              لإكماله رحلة التعلم التفاعلية في موقع "متحف الطب و الفلك في
+              الحضارة المصرية القديمةء"
+            </p>
+            <p>وإظهاره الفضول والمعرفة بالحضارة المصرية القديمة</p>
+          </div>
+          <div class="certificate-achievements">
+            <div class="achievement-badge"><i class="fas fa-star"></i></div>
+            <div class="achievement-badge"><i class="fas fa-crown"></i></div>
+            <div class="achievement-badge"><i class="fas fa-eye"></i></div>
+          </div>
+          <div class="certificate-date">
+            <p>تم منح هذه الشهادة في: <span id="current-date"></span></p>
+          </div>
+          <button class="print-certificate" id="print-certificate">
+            طباعة الشهادة
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h3>متحف الطب و الفلك في الحضارة المصرية القديمة
+            </h3>
+          <p>موقع تعليمي تفاعلي للأطفال</p>
+        </div>
+        <div class="footer-links">
+          <a href="#home">الرئيسية</a>
+          <a href="#about">من نحن</a>
+          <a href="#tour">جولة المتحف</a>
+          <a href="#games">الألعاب</a>
+          <a href="#lab">مختبر الفراعنة</a>
+          <a href="#stories">قصص المتحف</a>
+          <a href="#teacher">قسم المعلمة</a>
+        </div>
+        <div class="footer-info">
+          <p>© 2023 متحف الطب و الفلك في الحضارة المصرية القديمة
+          </p>
+          <p>مصمم خصيصًا لمرحلة الطفولة المبكرة</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ملفات JavaScript -->
+    <script src="script.js"></script>
+    <audio id="background-music" loop>
+      <source src="assets/background-music.mp3" type="audio/mpeg" />
+    </audio>
+  </body>
+</html>
