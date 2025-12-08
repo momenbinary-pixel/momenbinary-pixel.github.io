@@ -5,6 +5,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const backButtons = document.querySelectorAll('.back-btn');
     const startButton = document.getElementById('start-btn');
     
+    // التحكم بالموسيقى الخلفية
+    const backgroundMusic = document.getElementById('background-music');
+    const musicToggleButtons = document.querySelectorAll('#music-toggle-global');
+    
+    // تهيئة الصفحة
+    initializePage();
+    
+    // التحكم بالموسيقى
+    if (backgroundMusic) {
+        // بدء الموسيقى بصوت منخفض
+        backgroundMusic.volume = 0.3;
+        
+        // محاولة تشغيل الموسيقى تلقائياً
+        setTimeout(() => {
+            backgroundMusic.play().catch(error => {
+                console.log("تلقائي play فشل، سيتم تشغيل الموسيقى عند تفاعل المستخدم:", error);
+            });
+        }, 1000);
+        
+        // تحديث أزرار الموسيقى
+        updateMusicButtons();
+        
+        // إضافة مستمعين للأزرار
+        musicToggleButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMusic();
+            });
+        });
+        
+        // تحديث حالة الزر عند تغيير حالة الموسيقى
+        backgroundMusic.addEventListener('play', updateMusicButtons);
+        backgroundMusic.addEventListener('pause', updateMusicButtons);
+    }
+    
     // الانتقال من الصفحة الرئيسية
     if (startButton) {
         startButton.addEventListener('click', function() {
@@ -12,6 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.start-adventure').classList.add('hidden');
             // إظهار بطاقات التنقل
             document.querySelector('.navigation-preview').classList.remove('hidden');
+            
+            // محاولة تشغيل الموسيقى إذا لم تكن قيد التشغيل
+            if (backgroundMusic && backgroundMusic.paused) {
+                backgroundMusic.play().catch(error => {
+                    console.log("لم يتمكن من تشغيل الموسيقى:", error);
+                });
+            }
         });
     }
     
@@ -32,25 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
             showSection('start-screen');
         });
     });
-    
-    // التحكم بالموسيقى الخلفية
-    const musicToggle = document.getElementById('music-toggle');
-    const backgroundMusic = document.getElementById('background-music');
-    
-    if (musicToggle && backgroundMusic) {
-        // بدء الموسيقى بصوت منخفض
-        backgroundMusic.volume = 0.3;
-        
-        musicToggle.addEventListener('click', function() {
-            if (backgroundMusic.paused) {
-                backgroundMusic.play();
-                this.innerHTML = '<i class="fas fa-volume-up"></i> إيقاف الموسيقى';
-            } else {
-                backgroundMusic.pause();
-                this.innerHTML = '<i class="fas fa-volume-up"></i> تشغيل الموسيقى';
-            }
-        });
-    }
     
     // أزرار "اضغط لتعرف أكثر" في قسم الجولة
     const moreInfoButtons = document.querySelectorAll('.more-info-btn');
@@ -78,7 +101,81 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // قسم المعلمة
     setupTeacherSection();
+    
+    // إضافة مستمع للفقدان والتركيز للنافذة
+    window.addEventListener('focus', function() {
+        if (backgroundMusic && !backgroundMusic.paused) {
+            backgroundMusic.play().catch(error => {
+                console.log("لم يتمكن من استئناف الموسيقى:", error);
+            });
+        }
+    });
 });
+
+// تهيئة الصفحة
+function initializePage() {
+    // التحقق من حالة الموسيقى المخزنة محلياً
+    const musicState = localStorage.getItem('museum_music_state');
+    const backgroundMusic = document.getElementById('background-music');
+    
+    if (backgroundMusic) {
+        if (musicState === 'playing') {
+            backgroundMusic.play().catch(error => {
+                console.log("لم يتمكن من استئناف الموسيقى من التخزين المحلي:", error);
+            });
+        } else if (musicState === 'paused') {
+            backgroundMusic.pause();
+        }
+    }
+}
+
+// التحكم بالموسيقى
+function toggleMusic() {
+    const backgroundMusic = document.getElementById('background-music');
+    
+    if (!backgroundMusic) return;
+    
+    if (backgroundMusic.paused) {
+        backgroundMusic.play().then(() => {
+            localStorage.setItem('museum_music_state', 'playing');
+            updateMusicButtons();
+        }).catch(error => {
+            console.log("لم يتمكن من تشغيل الموسيقى:", error);
+            // إذا فشل التشغيل، حاول مرة أخرى عند تفاعل المستخدم
+            document.addEventListener('click', function tryPlayOnce() {
+                backgroundMusic.play().then(() => {
+                    localStorage.setItem('museum_music_state', 'playing');
+                    updateMusicButtons();
+                }).catch(e => {
+                    console.log("لا يزال غير قادر على تشغيل الموسيقى:", e);
+                });
+                document.removeEventListener('click', tryPlayOnce);
+            }, { once: true });
+        });
+    } else {
+        backgroundMusic.pause();
+        localStorage.setItem('museum_music_state', 'paused');
+        updateMusicButtons();
+    }
+}
+
+// تحديث أزرار الموسيقى
+function updateMusicButtons() {
+    const backgroundMusic = document.getElementById('background-music');
+    const musicButtons = document.querySelectorAll('#music-toggle-global');
+    
+    if (!backgroundMusic) return;
+    
+    musicButtons.forEach(button => {
+        if (backgroundMusic.paused) {
+            button.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            button.classList.add('muted');
+        } else {
+            button.innerHTML = '<i class="fas fa-volume-up"></i>';
+            button.classList.remove('muted');
+        }
+    });
+}
 
 // عرض قسم معين وإخفاء الآخرين
 function showSection(sectionId) {
@@ -107,6 +204,9 @@ function showSection(sectionId) {
         if (sectionId === 'achievements-section') {
             resetCertificate();
         }
+        
+        // التمرير إلى الأعلى
+        window.scrollTo(0, 0);
     }
 }
 
@@ -164,8 +264,8 @@ function resetGameArea() {
     const gameArea = document.getElementById('game-area');
     const gamesContainer = document.querySelector('.games-container');
     
-    gameArea.classList.add('hidden');
-    gamesContainer.classList.remove('hidden');
+    if (gameArea) gameArea.classList.add('hidden');
+    if (gamesContainer) gamesContainer.classList.remove('hidden');
     
     // إخفاء جميع الألعاب
     document.querySelectorAll('.game').forEach(game => {
@@ -331,33 +431,35 @@ function setupTwinklingStarsGame() {
                 this.style.backgroundColor = '#f1c40f';
             }
             
-            clickedCountSpan.textContent = clickedStars.length;
+            if (clickedCountSpan) clickedCountSpan.textContent = clickedStars.length;
         });
     });
     
-    checkButton.addEventListener('click', function() {
-        let correctSelections = 0;
-        let incorrectSelections = 0;
-        
-        stars.forEach((star, index) => {
-            const isTwinkling = star.getAttribute('data-twinkling') === 'true';
-            const isSelected = clickedStars.includes(index);
+    if (checkButton) {
+        checkButton.addEventListener('click', function() {
+            let correctSelections = 0;
+            let incorrectSelections = 0;
             
-            if (isTwinkling && isSelected) {
-                correctSelections++;
-            } else if (!isTwinkling && isSelected) {
-                incorrectSelections++;
+            stars.forEach((star, index) => {
+                const isTwinkling = star.getAttribute('data-twinkling') === 'true';
+                const isSelected = clickedStars.includes(index);
+                
+                if (isTwinkling && isSelected) {
+                    correctSelections++;
+                } else if (!isTwinkling && isSelected) {
+                    incorrectSelections++;
+                }
+            });
+            
+            if (correctSelections === 3 && incorrectSelections === 0) {
+                feedback.innerHTML = '<span style="color:green">أحسنت! ضغطت على النجوم اللامعة فقط.</span>';
+                feedback.style.backgroundColor = '#d4f8d4';
+            } else {
+                feedback.innerHTML = `<span style="color:red">ليس صحيح تماماً. ضغطت على ${correctSelections} نجوم لامعة و ${incorrectSelections} نجوم غير لامعة.</span>`;
+                feedback.style.backgroundColor = '#f8d4d4';
             }
         });
-        
-        if (correctSelections === 3 && incorrectSelections === 0) {
-            feedback.innerHTML = '<span style="color:green">أحسنت! ضغطت على النجوم اللامعة فقط.</span>';
-            feedback.style.backgroundColor = '#d4f8d4';
-        } else {
-            feedback.innerHTML = `<span style="color:red">ليس صحيح تماماً. ضغطت على ${correctSelections} نجوم لامعة و ${incorrectSelections} نجوم غير لامعة.</span>`;
-            feedback.style.backgroundColor = '#f8d4d4';
-        }
-    });
+    }
 }
 
 // إعداد لعبة "ترتيب مراحل الشمس"
@@ -383,31 +485,35 @@ function setupSunStagesGame() {
     // إضافة إمكانية السحب والإفلات للقائمة
     const sortableList = document.querySelector('#sun-stages-game .sortable-list');
     
-    sortableList.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        const draggingItem = document.querySelector('.dragging');
-        const siblings = [...sortableList.querySelectorAll('.sortable-item:not(.dragging)')];
-        
-        const nextSibling = siblings.find(sibling => {
-            return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+    if (sortableList) {
+        sortableList.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            const draggingItem = document.querySelector('.dragging');
+            const siblings = [...sortableList.querySelectorAll('.sortable-item:not(.dragging)')];
+            
+            const nextSibling = siblings.find(sibling => {
+                return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+            });
+            
+            sortableList.insertBefore(draggingItem, nextSibling);
         });
-        
-        sortableList.insertBefore(draggingItem, nextSibling);
-    });
+    }
     
-    checkButton.addEventListener('click', function() {
-        const items = [...sortableList.querySelectorAll('.sortable-item')];
-        const order = items.map(item => parseInt(item.getAttribute('data-order')));
-        const isCorrect = JSON.stringify(order) === JSON.stringify([1, 2, 3]);
-        
-        if (isCorrect) {
-            feedback.innerHTML = '<span style="color:green">أحسنت! رتبت مراحل الشمس بالترتيب الصحيح.</span>';
-            feedback.style.backgroundColor = '#d4f8d4';
-        } else {
-            feedback.innerHTML = '<span style="color:red">ليس بالترتيب الصحيح. الترتيب الصحيح: شروق - منتصف السماء - غروب</span>';
-            feedback.style.backgroundColor = '#f8d4d4';
-        }
-    });
+    if (checkButton) {
+        checkButton.addEventListener('click', function() {
+            const items = [...sortableList.querySelectorAll('.sortable-item')];
+            const order = items.map(item => parseInt(item.getAttribute('data-order')));
+            const isCorrect = JSON.stringify(order) === JSON.stringify([1, 2, 3]);
+            
+            if (isCorrect) {
+                feedback.innerHTML = '<span style="color:green">أحسنت! رتبت مراحل الشمس بالترتيب الصحيح.</span>';
+                feedback.style.backgroundColor = '#d4f8d4';
+            } else {
+                feedback.innerHTML = '<span style="color:red">ليس بالترتيب الصحيح. الترتيب الصحيح: شروق - منتصف السماء - غروب</span>';
+                feedback.style.backgroundColor = '#f8d4d4';
+            }
+        });
+    }
 }
 
 // إعداد لعبة "طبيب الفرعون"
@@ -433,39 +539,41 @@ function setupPharaohDoctorGame() {
                 this.style.backgroundColor = '#3498db';
             }
             
-            selectedCountSpan.textContent = selectedTools.length;
+            if (selectedCountSpan) selectedCountSpan.textContent = selectedTools.length;
         });
     });
     
-    checkButton.addEventListener('click', function() {
-        let correctSelections = 0;
-        let incorrectSelections = 0;
-        
-        tools.forEach((tool, index) => {
-            const isCorrect = tool.getAttribute('data-correct') === 'true';
-            const isSelected = selectedTools.includes(index);
+    if (checkButton) {
+        checkButton.addEventListener('click', function() {
+            let correctSelections = 0;
+            let incorrectSelections = 0;
             
-            if (isCorrect && isSelected) {
-                correctSelections++;
-                tool.style.backgroundColor = '#2ecc71';
-            } else if (isCorrect && !isSelected) {
-                tool.style.backgroundColor = '#2ecc71';
-            } else if (!isCorrect && isSelected) {
-                incorrectSelections++;
-                tool.style.backgroundColor = '#e74c3c';
-            } else if (!isCorrect && !isSelected) {
-                tool.style.backgroundColor = '#e8d0a9';
+            tools.forEach((tool, index) => {
+                const isCorrect = tool.getAttribute('data-correct') === 'true';
+                const isSelected = selectedTools.includes(index);
+                
+                if (isCorrect && isSelected) {
+                    correctSelections++;
+                    tool.style.backgroundColor = '#2ecc71';
+                } else if (isCorrect && !isSelected) {
+                    tool.style.backgroundColor = '#2ecc71';
+                } else if (!isCorrect && isSelected) {
+                    incorrectSelections++;
+                    tool.style.backgroundColor = '#e74c3c';
+                } else if (!isCorrect && !isSelected) {
+                    tool.style.backgroundColor = '#e8d0a9';
+                }
+            });
+            
+            if (correctSelections === 2 && incorrectSelections === 0) {
+                feedback.innerHTML = '<span style="color:green">أحسنت! اخترت العسل والضمادة، وهما ما استخدمه الفراعنة لعلاج الجروح.</span>';
+                feedback.style.backgroundColor = '#d4f8d4';
+            } else {
+                feedback.innerHTML = `<span style="color:red">ليس صحيح تماماً. كان الفراعنة يستخدمون العسل (كمضاد للبكتيريا) والضمادة لعلاج الجروح.</span>`;
+                feedback.style.backgroundColor = '#f8d4d4';
             }
         });
-        
-        if (correctSelections === 2 && incorrectSelections === 0) {
-            feedback.innerHTML = '<span style="color:green">أحسنت! اخترت العسل والضمادة، وهما ما استخدمه الفراعنة لعلاج الجروح.</span>';
-            feedback.style.backgroundColor = '#d4f8d4';
-        } else {
-            feedback.innerHTML = `<span style="color:red">ليس صحيح تماماً. كان الفراعنة يستخدمون العسل (كمضاد للبكتيريا) والضمادة لعلاج الجروح.</span>`;
-            feedback.style.backgroundColor = '#f8d4d4';
-        }
-    });
+    }
 }
 
 // إعداد لعبة "الأعشاب الفرعونية"
@@ -563,24 +671,26 @@ function setupHerbsMatchingGame() {
         });
     }
     
-    checkButton.addEventListener('click', function() {
-        let correctCount = 0;
-        let totalCount = Object.keys(correctMatches).length;
-        
-        connections.forEach(connection => {
-            if (correctMatches[connection.herb] === connection.use) {
-                correctCount++;
+    if (checkButton) {
+        checkButton.addEventListener('click', function() {
+            let correctCount = 0;
+            let totalCount = Object.keys(correctMatches).length;
+            
+            connections.forEach(connection => {
+                if (correctMatches[connection.herb] === connection.use) {
+                    correctCount++;
+                }
+            });
+            
+            if (correctCount === totalCount && connections.length === totalCount) {
+                feedback.innerHTML = '<span style="color:green">أحسنت! وصّلت كل نبات باستخدامه الطبي الصحيح.</span>';
+                feedback.style.backgroundColor = '#d4f8d4';
+            } else {
+                feedback.innerHTML = `<span style="color:red">ليس صحيح تماماً. ${correctCount} من أصل ${totalCount} اتصالات صحيحة.</span>`;
+                feedback.style.backgroundColor = '#f8d4d4';
             }
         });
-        
-        if (correctCount === totalCount && connections.length === totalCount) {
-            feedback.innerHTML = '<span style="color:green">أحسنت! وصّلت كل نبات باستخدامه الطبي الصحيح.</span>';
-            feedback.style.backgroundColor = '#d4f8d4';
-        } else {
-            feedback.innerHTML = `<span style="color:red">ليس صحيح تماماً. ${correctCount} من أصل ${totalCount} اتصالات صحيحة.</span>`;
-            feedback.style.backgroundColor = '#f8d4d4';
-        }
-    });
+    }
 }
 
 // إعداد لعبة "تحنيط افتراضي"
@@ -606,41 +716,48 @@ function setupMummificationStepsGame() {
     // إضافة إمكانية السحب والإفلات للقائمة
     const stepsList = document.querySelector('#mummification-steps-game .steps-list');
     
-    stepsList.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        const draggingItem = document.querySelector('.dragging');
-        const siblings = [...stepsList.querySelectorAll('.step-item:not(.dragging)')];
-        
-        const nextSibling = siblings.find(sibling => {
-            return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+    if (stepsList) {
+        stepsList.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            const draggingItem = document.querySelector('.dragging');
+            const siblings = [...stepsList.querySelectorAll('.step-item:not(.dragging)')];
+            
+            const nextSibling = siblings.find(sibling => {
+                return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+            });
+            
+            stepsList.insertBefore(draggingItem, nextSibling);
+            
+            // تحديث أرقام الخطوات
+            updateStepNumbers();
         });
-        
-        stepsList.insertBefore(draggingItem, nextSibling);
-        
-        // تحديث أرقام الخطوات
-        updateStepNumbers();
-    });
+    }
     
     function updateStepNumbers() {
         const items = [...stepsList.querySelectorAll('.step-item')];
         items.forEach((item, index) => {
-            item.querySelector('.step-number').textContent = index + 1;
+            const stepNumber = item.querySelector('.step-number');
+            if (stepNumber) {
+                stepNumber.textContent = index + 1;
+            }
         });
     }
     
-    checkButton.addEventListener('click', function() {
-        const items = [...stepsList.querySelectorAll('.step-item')];
-        const order = items.map(item => parseInt(item.getAttribute('data-step')));
-        const isCorrect = JSON.stringify(order) === JSON.stringify([1, 2, 3, 4]);
-        
-        if (isCorrect) {
-            feedback.innerHTML = '<span style="color:green">أحسنت! رتبت خطوات التحنيط بالترتيب الصحيح.</span>';
-            feedback.style.backgroundColor = '#d4f8d4';
-        } else {
-            feedback.innerHTML = '<span style="color:red">ليس بالترتيب الصحيح. الترتيب الصحيح: 1. تنظيف الجسد 2. إزالة السوائل 3. وضع الملح 4. لف القماش</span>';
-            feedback.style.backgroundColor = '#f8d4d4';
-        }
-    });
+    if (checkButton) {
+        checkButton.addEventListener('click', function() {
+            const items = [...stepsList.querySelectorAll('.step-item')];
+            const order = items.map(item => parseInt(item.getAttribute('data-step')));
+            const isCorrect = JSON.stringify(order) === JSON.stringify([1, 2, 3, 4]);
+            
+            if (isCorrect) {
+                feedback.innerHTML = '<span style="color:green">أحسنت! رتبت خطوات التحنيط بالترتيب الصحيح.</span>';
+                feedback.style.backgroundColor = '#d4f8d4';
+            } else {
+                feedback.innerHTML = '<span style="color:red">ليس بالترتيب الصحيح. الترتيب الصحيح: 1. تنظيف الجسد 2. إزالة السوائل 3. وضع الملح 4. لف القماش</span>';
+                feedback.style.backgroundColor = '#f8d4d4';
+            }
+        });
+    }
     
     // تحديث أرقام الخطوات في البداية
     updateStepNumbers();
@@ -709,8 +826,10 @@ function resetStarGame() {
         option.style.cursor = 'pointer';
     });
     
-    feedback.innerHTML = '';
-    feedback.style.backgroundColor = 'transparent';
+    if (feedback) {
+        feedback.innerHTML = '';
+        feedback.style.backgroundColor = 'transparent';
+    }
 }
 
 // إعادة تعيين لعبة الأسئلة
@@ -723,8 +842,10 @@ function resetQuestionGame() {
         option.style.cursor = 'pointer';
     });
     
-    feedback.innerHTML = '';
-    feedback.style.backgroundColor = 'transparent';
+    if (feedback) {
+        feedback.innerHTML = '';
+        feedback.style.backgroundColor = 'transparent';
+    }
 }
 
 // إعادة تعيين لعبة "اختار صورة النهار"
@@ -737,8 +858,10 @@ function resetDayNightGame() {
         option.style.cursor = 'pointer';
     });
     
-    feedback.innerHTML = '';
-    feedback.style.backgroundColor = 'transparent';
+    if (feedback) {
+        feedback.innerHTML = '';
+        feedback.style.backgroundColor = 'transparent';
+    }
 }
 
 // إعادة تعيين لعبة "اضغط على النجوم اللامعة"
@@ -751,9 +874,12 @@ function resetTwinklingStarsGame() {
         star.style.backgroundColor = '#2c3e50';
     });
     
-    feedback.innerHTML = '<p>تم الضغط على <span id="clicked-count">0</span> من <span id="total-twinkling">3</span> نجوم لامعة</p>';
-    feedback.style.backgroundColor = 'transparent';
-    clickedCountSpan.textContent = '0';
+    if (feedback) {
+        feedback.innerHTML = '<p>تم الضغط على <span id="clicked-count">0</span> من <span id="total-twinkling">3</span> نجوم لامعة</p>';
+        feedback.style.backgroundColor = 'transparent';
+    }
+    
+    if (clickedCountSpan) clickedCountSpan.textContent = '0';
 }
 
 // إعادة تعيين لعبة "ترتيب مراحل الشمس"
@@ -762,17 +888,21 @@ function resetSunStagesGame() {
     const feedback = document.querySelector('#sun-stages-game .feedback');
     
     // إعادة ترتيب العناصر إلى ترتيبها الأصلي
-    const items = [...sortableList.querySelectorAll('.sortable-item')];
-    items.sort((a, b) => {
-        return parseInt(a.getAttribute('data-order')) - parseInt(b.getAttribute('data-order'));
-    });
+    if (sortableList) {
+        const items = [...sortableList.querySelectorAll('.sortable-item')];
+        items.sort((a, b) => {
+            return parseInt(a.getAttribute('data-order')) - parseInt(b.getAttribute('data-order'));
+        });
+        
+        items.forEach(item => {
+            sortableList.appendChild(item);
+        });
+    }
     
-    items.forEach(item => {
-        sortableList.appendChild(item);
-    });
-    
-    feedback.innerHTML = '';
-    feedback.style.backgroundColor = 'transparent';
+    if (feedback) {
+        feedback.innerHTML = '';
+        feedback.style.backgroundColor = 'transparent';
+    }
 }
 
 // إعادة تعيين لعبة "طبيب الفرعون"
@@ -785,9 +915,12 @@ function resetPharaohDoctorGame() {
         tool.style.backgroundColor = '#e8d0a9';
     });
     
-    feedback.innerHTML = '<p>اخترت <span id="selected-tools-count">0</span> أداة</p>';
-    feedback.style.backgroundColor = 'transparent';
-    selectedCountSpan.textContent = '0';
+    if (feedback) {
+        feedback.innerHTML = '<p>اخترت <span id="selected-tools-count">0</span> أداة</p>';
+        feedback.style.backgroundColor = 'transparent';
+    }
+    
+    if (selectedCountSpan) selectedCountSpan.textContent = '0';
 }
 
 // إعادة تعيين لعبة "الأعشاب الفرعونية"
@@ -808,8 +941,10 @@ function resetHerbsMatchingGame() {
         use.classList.remove('selected');
     });
     
-    feedback.innerHTML = '';
-    feedback.style.backgroundColor = 'transparent';
+    if (feedback) {
+        feedback.innerHTML = '';
+        feedback.style.backgroundColor = 'transparent';
+    }
 }
 
 // إعادة تعيين لعبة "تحنيط افتراضي"
@@ -818,17 +953,21 @@ function resetMummificationStepsGame() {
     const feedback = document.querySelector('#mummification-steps-game .feedback');
     
     // إعادة ترتيب العناصر إلى ترتيبها الأصلي
-    const items = [...stepsList.querySelectorAll('.step-item')];
-    items.sort((a, b) => {
-        return Math.random() - 0.5; // ترتيب عشوائي
-    });
+    if (stepsList) {
+        const items = [...stepsList.querySelectorAll('.step-item')];
+        items.sort((a, b) => {
+            return Math.random() - 0.5; // ترتيب عشوائي
+        });
+        
+        items.forEach(item => {
+            stepsList.appendChild(item);
+        });
+    }
     
-    items.forEach(item => {
-        stepsList.appendChild(item);
-    });
-    
-    feedback.innerHTML = '';
-    feedback.style.backgroundColor = 'transparent';
+    if (feedback) {
+        feedback.innerHTML = '';
+        feedback.style.backgroundColor = 'transparent';
+    }
 }
 
 // إعداد قسم القصص
@@ -915,8 +1054,8 @@ function loadStory(storyType) {
             content = `<p>اختر قصة من القائمة للاستماع إليها.</p>`;
     }
     
-    storyTitle.textContent = title;
-    storyText.innerHTML = content;
+    if (storyTitle) storyTitle.textContent = title;
+    if (storyText) storyText.innerHTML = content;
 }
 
 // إعادة تعيين مشغل القصص
@@ -924,8 +1063,8 @@ function resetStoryPlayer() {
     const storyPlayer = document.getElementById('story-player');
     const storiesContainer = document.querySelector('.stories');
     
-    storyPlayer.classList.add('hidden');
-    storiesContainer.classList.remove('hidden');
+    if (storyPlayer) storyPlayer.classList.add('hidden');
+    if (storiesContainer) storiesContainer.classList.remove('hidden');
 }
 
 // إعداد قسم الإنجازات
