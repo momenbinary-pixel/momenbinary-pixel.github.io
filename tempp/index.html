@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رحلتي إلى متحف المصريين القدماء</title>
+    <title>متحف الطب و الفلك في الحضارة المصرية القديمة</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri&display=swap" rel="stylesheet">
@@ -18,18 +18,11 @@
     <div id="start-screen" class="screen active">
         <div class="container">
             <header>
-                <h1><i class="fas fa-landmark"></i> رحلتي إلى متحف المصريين القدماء</h1>
+                <h1><i class="fas fa-landmark"></i> متحف الطب و الفلك في الحضارة المصرية القديمة</h1>
             </header>
             
             <main>
-                <!-- <div class="main-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-pyramids"></i>
-                        <p>صورة المتحف المصري الكبير</p>
-                    </div>
-                </div> -->
-                
-                <div class="start-adventure">
+                <div class="start-adventure active">
                     <button id="start-btn" class="btn-primary">
                         <i class="fas fa-play"></i> اضغط لتبدأ المغامرة!
                     </button>
@@ -41,7 +34,7 @@
                     </div>
                 </div>
                 
-                <div class="navigation-preview">
+                <div class="navigation-preview hidden">
                     <h2>استكشف أقسام المتحف:</h2>
                     <div class="nav-cards">
                         <div class="nav-card" data-section="about">
@@ -83,7 +76,7 @@
         <div class="container">
             <header>
                 <h1><i class="fas fa-info-circle"></i> من نحن؟</h1>
-                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة</button>
+                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة للشاشة الرئيسية</button>
             </header>
             
             <main>
@@ -96,9 +89,9 @@
                     </div>
                     
                     <div class="content-text">
-                        <h2>أهلاً بك في متحف المصريين القدماء!</h2>
-                        <p>هنا ستتعرّف على أسرار الفراعنة، كيف عاشوا؟ كيف داووا المرضى؟ وكيف كانوا يقرؤون السماء والنجوم!</p>
-                        <p>سنتعلم معاً عن الحضارة المصرية القديمة التي كانت من أعظم حضارات العالم. سنرى كيف بنوا الأهرامات، وكيف اخترعوا الكتابة الهيروغليفية، وكيف عرفوا الكثير عن الطب والفلك!</p>
+                        <h2>أهلاً بك في متحف الطب والفلك في الحضارة المصرية القديمة!</h2>
+                        <p>هنا ستتعرّف على أسرار الفراعنة في الطب والفلك، كيف عالجوا الأمراض؟ وكيف قرأوا السماء والنجوم!</p>
+                        <p>سنتعلم معاً عن الحضارة المصرية القديمة التي كانت من أعظم حضارات العالم في الطب والفلك. سنرى كيف استخدموا الأعشاب والنجوم في علاج الأمراض وتنظيم حياتهم!</p>
                         <p>هل أنت مستعد للمغامرة؟ هيا بنا!</p>
                     </div>
                 </div>
@@ -111,7 +104,7 @@
         <div class="container">
             <header>
                 <h1><i class="fas fa-video"></i> جولة داخل المتحف</h1>
-                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة</button>
+                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة للشاشة الرئيسية</button>
             </header>
             
             <main>
@@ -182,7 +175,7 @@
         <div class="container">
             <header>
                 <h1><i class="fas fa-gamepad"></i> ألعاب تفاعلية</h1>
-                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة</button>
+                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة للشاشة الرئيسية</button>
             </header>
             
             <main>
@@ -211,6 +204,60 @@
                         <p>سؤال بسيط بإجابات صور: مثلًا: ما لون تاج الملك توت عنخ آمون؟</p>
                         <button class="btn-primary play-game-btn" data-game="question">
                             <i class="fas fa-play"></i> اعرف السؤال
+                        </button>
+                    </div>
+                    
+                    <!-- لعبة "اختار صورة النهار" -->
+                    <div class="game-card">
+                        <h3><i class="fas fa-sun"></i> اختار صورة النهار</h3>
+                        <p>أين يمكننا رؤية الشمس؟ اختار بين صورة النهار والليل</p>
+                        <button class="btn-primary play-game-btn" data-game="day-night">
+                            <i class="fas fa-play"></i> العب الآن
+                        </button>
+                    </div>
+                    
+                    <!-- لعبة "اضغط على النجوم اللامعة" -->
+                    <div class="game-card">
+                        <h3><i class="fas fa-star"></i> النجوم اللامعة</h3>
+                        <p>اضغط على النجوم اللامعة فقط من بين النجوم الخمسة</p>
+                        <button class="btn-primary play-game-btn" data-game="twinkling-stars">
+                            <i class="fas fa-play"></i> العب الآن
+                        </button>
+                    </div>
+                    
+                    <!-- لعبة "ترتيب مراحل الشمس" -->
+                    <div class="game-card">
+                        <h3><i class="fas fa-sun"></i> مراحل الشمس</h3>
+                        <p>رتب مراحل الشمس: الشروق - الظهر - الغروب</p>
+                        <button class="btn-primary play-game-btn" data-game="sun-stages">
+                            <i class="fas fa-play"></i> العب الآن
+                        </button>
+                    </div>
+                    
+                    <!-- لعبة "طبيب الفرعون" -->
+                    <div class="game-card">
+                        <h3><i class="fas fa-user-md"></i> طبيب الفرعون</h3>
+                        <p>اختر الأدوات الصحيحة لعلاج جرح الفرعون</p>
+                        <button class="btn-primary play-game-btn" data-game="pharaoh-doctor">
+                            <i class="fas fa-play"></i> العب الآن
+                        </button>
+                    </div>
+                    
+                    <!-- لعبة "الأعشاب الفرعونية" -->
+                    <div class="game-card">
+                        <h3><i class="fas fa-leaf"></i> الأعشاب الفرعونية</h3>
+                        <p>اطب بين النبات واستخدامه الطبي عند الفراعنة</p>
+                        <button class="btn-primary play-game-btn" data-game="herbs-matching">
+                            <i class="fas fa-play"></i> العب الآن
+                        </button>
+                    </div>
+                    
+                    <!-- لعبة "تحنيط افتراضي" -->
+                    <div class="game-card">
+                        <h3><i class="fas fa-mummy"></i> مراحل التحنيط</h3>
+                        <p>رتب خطوات التحنيط بشكل مبسط وسهل</p>
+                        <button class="btn-primary play-game-btn" data-game="mummification-steps">
+                            <i class="fas fa-play"></i> العب الآن
                         </button>
                     </div>
                 </div>
@@ -296,6 +343,229 @@
                         <div class="feedback"></div>
                         <button class="btn-secondary back-to-games-btn">العودة إلى الألعاب</button>
                     </div>
+                    
+                    <!-- لعبة "اختار صورة النهار" -->
+                    <div id="day-night-game" class="game hidden">
+                        <h3>اختار صورة النهار</h3>
+                        <p>أين يمكننا رؤية الشمس؟ اختر الصورة الصحيحة:</p>
+                        <div class="day-night-container">
+                            <div class="option-box" data-correct="true">
+                                <div class="image-placeholder small day">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <p>النهار</p>
+                            </div>
+                            <div class="option-box" data-correct="false">
+                                <div class="image-placeholder small night">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <p>الليل</p>
+                            </div>
+                        </div>
+                        <div class="feedback"></div>
+                        <button class="btn-secondary back-to-games-btn">العودة إلى الألعاب</button>
+                    </div>
+                    
+                    <!-- لعبة "اضغط على النجوم اللامعة" -->
+                    <div id="twinkling-stars-game" class="game hidden">
+                        <h3>اضغط على النجوم اللامعة</h3>
+                        <p>اضغط على النجوم اللامعة فقط (3 نجوم لامعة من أصل 5):</p>
+                        <div class="stars-container">
+                            <div class="star-click" data-twinkling="true">
+                                <i class="fas fa-star twinkling"></i>
+                                <p>نجمة 1</p>
+                            </div>
+                            <div class="star-click" data-twinkling="false">
+                                <i class="fas fa-star"></i>
+                                <p>نجمة 2</p>
+                            </div>
+                            <div class="star-click" data-twinkling="true">
+                                <i class="fas fa-star twinkling"></i>
+                                <p>نجمة 3</p>
+                            </div>
+                            <div class="star-click" data-twinkling="true">
+                                <i class="fas fa-star twinkling"></i>
+                                <p>نجمة 4</p>
+                            </div>
+                            <div class="star-click" data-twinkling="false">
+                                <i class="fas fa-star"></i>
+                                <p>نجمة 5</p>
+                            </div>
+                        </div>
+                        <div class="feedback">
+                            <p>تم الضغط على <span id="clicked-count">0</span> من <span id="total-twinkling">3</span> نجوم لامعة</p>
+                        </div>
+                        <button id="check-stars-btn" class="btn-primary">تحقق من الإجابة</button>
+                        <button class="btn-secondary back-to-games-btn">العودة إلى الألعاب</button>
+                    </div>
+                    
+                    <!-- لعبة "ترتيب مراحل الشمس" -->
+                    <div id="sun-stages-game" class="game hidden">
+                        <h3>ترتيب مراحل الشمس</h3>
+                        <p>رتب مراحل الشمس بالترتيب الصحيح:</p>
+                        <div class="sortable-container">
+                            <div class="sortable-list">
+                                <div class="sortable-item" data-order="1">
+                                    <div class="image-placeholder small">
+                                        <i class="fas fa-sunrise"></i>
+                                    </div>
+                                    <p>شروق الشمس</p>
+                                    <span class="drag-handle"><i class="fas fa-arrows-alt"></i></span>
+                                </div>
+                                <div class="sortable-item" data-order="3">
+                                    <div class="image-placeholder small">
+                                        <i class="fas fa-sunset"></i>
+                                    </div>
+                                    <p>غروب الشمس</p>
+                                    <span class="drag-handle"><i class="fas fa-arrows-alt"></i></span>
+                                </div>
+                                <div class="sortable-item" data-order="2">
+                                    <div class="image-placeholder small">
+                                        <i class="fas fa-sun"></i>
+                                    </div>
+                                    <p>منتصف السماء</p>
+                                    <span class="drag-handle"><i class="fas fa-arrows-alt"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feedback"></div>
+                        <button id="check-sun-order-btn" class="btn-primary">تحقق من الترتيب</button>
+                        <button class="btn-secondary back-to-games-btn">العودة إلى الألعاب</button>
+                    </div>
+                    
+                    <!-- لعبة "طبيب الفرعون" -->
+                    <div id="pharaoh-doctor-game" class="game hidden">
+                        <h3>طبيب الفرعون</h3>
+                        <p>الفرعون عنده جرح، اختر الأدوات الصحيحة لعلاجه:</p>
+                        <div class="tools-container">
+                            <div class="tool-option" data-correct="true">
+                                <div class="image-placeholder small">
+                                    <i class="fas fa-honey-pot"></i>
+                                </div>
+                                <p>العسل</p>
+                            </div>
+                            <div class="tool-option" data-correct="true">
+                                <div class="image-placeholder small">
+                                    <i class="fas fa-bandage"></i>
+                                </div>
+                                <p>الضمادة</p>
+                            </div>
+                            <div class="tool-option" data-correct="false">
+                                <div class="image-placeholder small">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <p>نباتات علاجية</p>
+                            </div>
+                            <div class="tool-option" data-correct="false">
+                                <div class="image-placeholder small">
+                                    <i class="fas fa-tint"></i>
+                                </div>
+                                <p>زيوت</p>
+                            </div>
+                        </div>
+                        <div class="feedback">
+                            <p>اخترت <span id="selected-tools-count">0</span> أداة</p>
+                        </div>
+                        <button id="check-tools-btn" class="btn-primary">تحقق من الإجابة</button>
+                        <button class="btn-secondary back-to-games-btn">العودة إلى الألعاب</button>
+                    </div>
+                    
+                    <!-- لعبة "الأعشاب الفرعونية" -->
+                    <div id="herbs-matching-game" class="game hidden">
+                        <h3>الأعشاب الفرعونية</h3>
+                        <p>اطب بين النبات واستخدامه الطبي:</p>
+                        <div class="herbs-matching-container">
+                            <div class="herbs-column">
+                                <div class="herb-item" data-herb="حلبة">
+                                    <div class="image-placeholder small">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <p>الحلبة</p>
+                                </div>
+                                <div class="herb-item" data-herb="ثوم">
+                                    <div class="image-placeholder small">
+                                        <i class="fas fa-garlic"></i>
+                                    </div>
+                                    <p>الثوم</p>
+                                </div>
+                                <div class="herb-item" data-herb="عسل">
+                                    <div class="image-placeholder small">
+                                        <i class="fas fa-honey-pot"></i>
+                                    </div>
+                                    <p>العسل</p>
+                                </div>
+                                <div class="herb-item" data-herb="كمون">
+                                    <div class="image-placeholder small">
+                                        <i class="fas fa-mortar-pestle"></i>
+                                    </div>
+                                    <p>الكمون</p>
+                                </div>
+                            </div>
+                            <div class="uses-column">
+                                <div class="use-item" data-use="حمى">لعلاج الحمى</div>
+                                <div class="use-item" data-use="مناعة">للمناعة</div>
+                                <div class="use-item" data-use="جروح">لعلاج الجروح</div>
+                                <div class="use-item" data-use="معدة">للمعدة</div>
+                            </div>
+                        </div>
+                        <div class="connections"></div>
+                        <div class="feedback"></div>
+                        <button id="check-herbs-btn" class="btn-primary">تحقق من التوصيلات</button>
+                        <button class="btn-secondary back-to-games-btn">العودة إلى الألعاب</button>
+                    </div>
+                    
+                    <!-- لعبة "تحنيط افتراضي" -->
+                    <div id="mummification-steps-game" class="game hidden">
+                        <h3>مراحل التحنيط</h3>
+                        <p>رتب خطوات التحنيط بالترتيب الصحيح:</p>
+                        <div class="steps-container">
+                            <div class="steps-list">
+                                <div class="step-item" data-step="3">
+                                    <span class="step-number">?</span>
+                                    <div class="step-content">
+                                        <div class="image-placeholder small">
+                                            <i class="fas fa-salt"></i>
+                                        </div>
+                                        <p>وضع الملح</p>
+                                    </div>
+                                    <span class="drag-handle"><i class="fas fa-arrows-alt"></i></span>
+                                </div>
+                                <div class="step-item" data-step="4">
+                                    <span class="step-number">?</span>
+                                    <div class="step-content">
+                                        <div class="image-placeholder small">
+                                            <i class="fas fa-scroll"></i>
+                                        </div>
+                                        <p>لف القماش</p>
+                                    </div>
+                                    <span class="drag-handle"><i class="fas fa-arrows-alt"></i></span>
+                                </div>
+                                <div class="step-item" data-step="1">
+                                    <span class="step-number">?</span>
+                                    <div class="step-content">
+                                        <div class="image-placeholder small">
+                                            <i class="fas fa-bath"></i>
+                                        </div>
+                                        <p>تنظيف الجسد</p>
+                                    </div>
+                                    <span class="drag-handle"><i class="fas fa-arrows-alt"></i></span>
+                                </div>
+                                <div class="step-item" data-step="2">
+                                    <span class="step-number">?</span>
+                                    <div class="step-content">
+                                        <div class="image-placeholder small">
+                                            <i class="fas fa-tint-slash"></i>
+                                        </div>
+                                        <p>إزالة السوائل</p>
+                                    </div>
+                                    <span class="drag-handle"><i class="fas fa-arrows-alt"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feedback"></div>
+                        <button id="check-steps-btn" class="btn-primary">تحقق من الترتيب</button>
+                        <button class="btn-secondary back-to-games-btn">العودة إلى الألعاب</button>
+                    </div>
                 </div>
             </main>
         </div>
@@ -306,7 +576,7 @@
         <div class="container">
             <header>
                 <h1><i class="fas fa-flask"></i> مختبر الفراعنة التجريبي</h1>
-                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة</button>
+                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة للشاشة الرئيسية</button>
             </header>
             
             <main>
@@ -400,7 +670,7 @@
         <div class="container">
             <header>
                 <h1><i class="fas fa-book-open"></i> قصص المتحف</h1>
-                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة</button>
+                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة للشاشة الرئيسية</button>
             </header>
             
             <main>
@@ -483,7 +753,7 @@
         <div class="container">
             <header>
                 <h1><i class="fas fa-trophy"></i> بطاقات الإنجاز</h1>
-                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة</button>
+                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة للشاشة الرئيسية</button>
             </header>
             
             <main>
@@ -562,7 +832,7 @@
         <div class="container">
             <header>
                 <h1><i class="fas fa-chalkboard-teacher"></i> قسم المعلمة/ولي الأمر</h1>
-                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة</button>
+                <button class="back-btn"><i class="fas fa-arrow-right"></i> العودة للشاشة الرئيسية</button>
             </header>
             
             <main>

@@ -115,6 +115,16 @@ header h1 {
     margin-bottom: 5px;
 }
 
+.image-placeholder.small.day {
+    background-color: #ffcc00;
+    color: #fff;
+}
+
+.image-placeholder.small.night {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
 /* الأزرار */
 .btn-primary {
     background-color: #5a3921;
@@ -166,9 +176,23 @@ header h1 {
     margin-top: 10px;
 }
 
+/* بداية المغامرة */
+.start-adventure {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.start-adventure.hidden {
+    display: none;
+}
+
 /* بطاقات التنقل */
 .navigation-preview {
     margin-top: 40px;
+}
+
+.navigation-preview.hidden {
+    display: none;
 }
 
 .navigation-preview h2 {
@@ -393,7 +417,7 @@ header h1 {
 }
 
 /* لعبة النجوم والإجابات */
-.stars-container, .answer-options {
+.stars-container, .answer-options, .day-night-container, .tools-container {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -401,7 +425,7 @@ header h1 {
     margin: 30px 0;
 }
 
-.star-option, .answer-option {
+.star-option, .answer-option, .option-box, .tool-option {
     background-color: #e8d0a9;
     border-radius: 10px;
     padding: 20px;
@@ -411,7 +435,7 @@ header h1 {
     transition: all 0.3s;
 }
 
-.star-option:hover, .answer-option:hover {
+.star-option:hover, .answer-option:hover, .option-box:hover, .tool-option:hover {
     background-color: #f0c674;
     transform: translateY(-5px);
 }
@@ -427,6 +451,135 @@ header h1 {
 .blue { background-color: #3498db; }
 .gold { background-color: #f1c40f; }
 .green { background-color: #2ecc71; }
+
+/* لعبة النجوم اللامعة */
+.star-click {
+    background-color: #2c3e50;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+    transition: all 0.3s;
+}
+
+.star-click:hover {
+    background-color: #34495e;
+    transform: translateY(-5px);
+}
+
+.star-click .twinkling {
+    color: #f1c40f;
+    animation: twinkle 1s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+/* لعبة ترتيب المراحل */
+.sortable-container, .steps-container {
+    margin: 30px 0;
+}
+
+.sortable-list, .steps-list {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.sortable-item, .step-item {
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: move;
+    transition: all 0.3s;
+}
+
+.sortable-item:hover, .step-item:hover {
+    background-color: #f0c674;
+    transform: translateY(-3px);
+}
+
+.drag-handle {
+    margin-right: auto;
+    color: #5a3921;
+    cursor: move;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    background-color: #8b4513;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* لعبة الأعشاب الفرعونية */
+.herbs-matching-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.herbs-column, .uses-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.herb-item {
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.herb-item:hover {
+    background-color: #f0c674;
+    transform: translateY(-3px);
+}
+
+.use-item {
+    background-color: #d4a762;
+    border-radius: 10px;
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.use-item:hover {
+    background-color: #e8d0a9;
+}
+
+.connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
 
 .feedback {
     margin: 20px 0;
@@ -737,6 +890,10 @@ header h1 {
     .tour-content {
         width: 60%;
     }
+    
+    .herbs-matching-container {
+        flex-direction: row;
+    }
 }
 
 @media (max-width: 767px) {
@@ -750,11 +907,21 @@ header h1 {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .games-container, .stories, .achievements {
+    .games-container {
         grid-template-columns: 1fr;
     }
     
-    .matching-images, .matching-targets, .stars-container, .answer-options {
+    .stories, .achievements {
+        grid-template-columns: 1fr;
+    }
+    
+    .matching-images, .matching-targets, .stars-container, 
+    .answer-options, .day-night-container, .tools-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .herbs-matching-container {
         flex-direction: column;
         align-items: center;
     }
