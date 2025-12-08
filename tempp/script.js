@@ -1238,3 +1238,20 @@ function setupTeacherSection() {
     });
   });
 }
+
+ let soundOn = false;
+
+  function toggleSound() {
+    const audio = document.getElementById("voicePlayer");
+    const icon = document.getElementById("soundIcon");
+
+    if (!soundOn) {
+      audio.play();
+      icon.textContent = "🔊";
+      soundOn = true;
+    } else {
+      audio.pause();
+      icon.textContent = "🔇";
+      soundOn = false;
+    }
+  }

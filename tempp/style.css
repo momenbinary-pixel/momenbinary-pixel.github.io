@@ -26,7 +26,7 @@ body {
 .screen {
     display: none;
     min-height: 100vh;
-    background: #fef6e4 url('images/h.gif') center center/cover no-repeat fixed;
+    background: #fef6e4 url('images/h.jpeg') center center/cover no-repeat fixed;
 }
 
 .screen.active {
@@ -440,11 +440,30 @@ header h1 {
     color: #5a3921;
     margin-bottom: 15px;
     font-size: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e8d0a9;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: move;
+    width: 300px;
+    text-align: center;
+}
+
+.game-p{
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    background-color: #e8d0a9;
+     width: 400px;
+     margin-left: auto;
+    margin-right: auto;
 }
 
 .game p {
     margin-bottom: 20px;
     font-size: 1.1rem;
+    /* background-color: #e8d0a9; */
+     /* width: 600px; */
 }
 
 /* لعبة المطابقة */
@@ -1101,3 +1120,18 @@ header h1 {
         font-size: 1rem;
     }
 }
+
+
+.sound-toggle {
+  background-color: transparent;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #d4af37; /* gold */
+  transition: 0.3s ease;
+}
+
+.sound-toggle:hover {
+  transform: scale(1.1);
+}
+

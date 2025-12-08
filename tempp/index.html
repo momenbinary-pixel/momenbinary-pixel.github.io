@@ -64,10 +64,6 @@
                 <i class="fas fa-gamepad"></i>
                 <span>ألعاب تفاعلية</span>
               </div>
-              <div class="nav-card" data-section="lab">
-                <i class="fas fa-flask"></i>
-                <span>مختبر الحضارة المصرية القديمة</span>
-              </div>
               <div class="nav-card" data-section="stories">
                 <i class="fas fa-book-open"></i>
                 <span>قصص المتحف</span>
@@ -113,6 +109,10 @@
             </div>
 
             <div class="content-text">
+              <button class="sound-toggle" onclick="toggleSound()">
+                <span id="soundIcon">🔊</span>
+              </button>
+              <audio id="voicePlayer" src="audio/h.mp3"></audio>
               <h2>أهلاً بك في متحف الطب والفلك في الحضارة المصرية القديمة!</h2>
               <p>
                 هنا ستتعرّف على أسرار الحضارة المصرية القديمة في الطب والفلك،
@@ -245,6 +245,10 @@
           <div class="games-container">
             <!-- لعبة المطابقة -->
             <div class="game-card">
+              <button class="sound-toggle" onclick="toggleSound()">
+                <span id="soundIcon">🔊</span>
+              </button>
+              <audio id="voicePlayer" src="audio/h.mp3"></audio>
               <h3><i class="fas fa-puzzle-piece"></i> لعبة المطابقة</h3>
               <p>مطابقة صورة الأداة باسمها (مثل مبضع - ميزان - عين حورس)</p>
               <button class="btn-primary play-game-btn" data-game="matching">
@@ -253,16 +257,16 @@
             </div>
 
             <!-- لعبة أين النجمة؟ -->
-            <div class="game-card">
+            <!-- <div class="game-card">
               <h3><i class="fas fa-star"></i> لعبة أين النجمة؟</h3>
               <p>يختار الطفل النجمة الصحيحة المرتبطة برع أو تحوت</p>
               <button class="btn-primary play-game-btn" data-game="star">
                 <i class="fas fa-play"></i> العب الآن
               </button>
-            </div>
+            </div> -->
 
             <!-- سؤال اليوم -->
-            <div class="game-card">
+            <!-- <div class="game-card">
               <h3><i class="fas fa-question"></i> سؤال اليوم</h3>
               <p>
                 سؤال بسيط بإجابات صور: مثلًا: ما لون تاج الملك توت عنخ آمون؟
@@ -270,10 +274,14 @@
               <button class="btn-primary play-game-btn" data-game="question">
                 <i class="fas fa-play"></i> اعرف السؤال
               </button>
-            </div>
+            </div> -->
 
             <!-- لعبة "اختار صورة النهار" -->
             <div class="game-card">
+              <button class="sound-toggle" onclick="toggleSound()">
+                <span id="soundIcon">🔊</span>
+              </button>
+              <audio id="voicePlayer" src="audio/h.mp3"></audio>
               <h3><i class="fas fa-sun"></i> اختار صورة النهار</h3>
               <p>أين يمكننا رؤية الشمس؟ اختار بين صورة النهار والليل</p>
               <button class="btn-primary play-game-btn" data-game="day-night">
@@ -282,7 +290,7 @@
             </div>
 
             <!-- لعبة "اضغط على النجوم اللامعة" -->
-            <div class="game-card">
+            <!-- <div class="game-card">
               <h3><i class="fas fa-star"></i> النجوم اللامعة</h3>
               <p>اضغط على النجوم اللامعة فقط من بين النجوم الخمسة</p>
               <button
@@ -290,10 +298,14 @@
                 data-game="twinkling-stars">
                 <i class="fas fa-play"></i> العب الآن
               </button>
-            </div>
+            </div> -->
 
             <!-- لعبة "ترتيب مراحل الشمس" -->
             <div class="game-card">
+              <button class="sound-toggle" onclick="toggleSound()">
+                <span id="soundIcon">🔊</span>
+              </button>
+              <audio id="voicePlayer" src="audio/h.mp3"></audio>
               <h3><i class="fas fa-sun"></i> مراحل الشمس</h3>
               <p>رتب مراحل الشمس: الشروق - الظهر - الغروب</p>
               <button class="btn-primary play-game-btn" data-game="sun-stages">
@@ -303,6 +315,10 @@
 
             <!-- لعبة "طبيب الفرعون" -->
             <div class="game-card">
+              <button class="sound-toggle" onclick="toggleSound()">
+                <span id="soundIcon">🔊</span>
+              </button>
+              <audio id="voicePlayer" src="audio/h.mp3"></audio>
               <h3><i class="fas fa-user-md"></i> طبيب الفرعون</h3>
               <p>اختر الأدوات الصحيحة لعلاج جرح الفرعون</p>
               <button
@@ -314,6 +330,10 @@
 
             <!-- لعبة "الأعشاب الفرعونية" -->
             <div class="game-card">
+              <button class="sound-toggle" onclick="toggleSound()">
+                <span id="soundIcon">🔊</span>
+              </button>
+              <audio id="voicePlayer" src="audio/h.mp3"></audio>
               <h3><i class="fas fa-leaf"></i> الأعشاب الفرعونية</h3>
               <p>اطب بين النبات واستخدامه الطبي عند الحضارة المصرية القديمة</p>
               <button
@@ -325,6 +345,10 @@
 
             <!-- لعبة "تحنيط افتراضي" -->
             <div class="game-card">
+              <button class="sound-toggle" onclick="toggleSound()">
+                <span id="soundIcon">🔊</span>
+              </button>
+              <audio id="voicePlayer" src="audio/h.mp3"></audio>
               <h3><i class="fas fa-mummy"></i> مراحل التحنيط</h3>
               <p>رتب خطوات التحنيط بشكل مبسط وسهل</p>
               <button
@@ -334,12 +358,13 @@
               </button>
             </div>
           </div>
+          
 
           <!-- منطقة الألعاب التفاعلية -->
           <div id="game-area" class="hidden">
             <div id="matching-game" class="game hidden">
               <h3>لعبة المطابقة</h3>
-              <p>اسحب الصورة إلى اسمها الصحيح!</p>
+              <p class="game-p">اسحب الصورة إلى اسمها الصحيح!</p>
               <div class="matching-container">
                 <div class="matching-images">
                   <div class="draggable" draggable="true" data-name="مبضع">
@@ -373,7 +398,7 @@
               </button>
             </div>
 
-            <div id="star-game" class="game hidden">
+            <!-- <div id="star-game" class="game hidden">
               <h3>لعبة أين النجمة؟</h3>
               <p>اختر النجمة الصحيحة لرع إله الشمس!</p>
               <div class="stars-container">
@@ -421,12 +446,12 @@
               <button class="btn-secondary back-to-games-btn">
                 العودة إلى الألعاب
               </button>
-            </div>
+            </div> -->
 
             <!-- لعبة "اختار صورة النهار" -->
             <div id="day-night-game" class="game hidden">
               <h3>اختار صورة النهار</h3>
-              <p>أين يمكننا رؤية الشمس؟ اختر الصورة الصحيحة:</p>
+              <p class="game-p">أين يمكننا رؤية الشمس؟ اختر الصورة الصحيحة:</p>
               <div class="day-night-container">
                 <div class="option-box" data-correct="true">
                   <div class="image-placeholder small day">
@@ -448,7 +473,7 @@
             </div>
 
             <!-- لعبة "اضغط على النجوم اللامعة" -->
-            <div id="twinkling-stars-game" class="game hidden">
+            <!-- <div id="twinkling-stars-game" class="game hidden">
               <h3>اضغط على النجوم اللامعة</h3>
               <p>اضغط على النجوم اللامعة فقط (3 نجوم لامعة من أصل 5):</p>
               <div class="stars-container">
@@ -485,12 +510,12 @@
               <button class="btn-secondary back-to-games-btn">
                 العودة إلى الألعاب
               </button>
-            </div>
+            </div> -->
 
             <!-- لعبة "ترتيب مراحل الشمس" -->
             <div id="sun-stages-game" class="game hidden">
               <h3>ترتيب مراحل الشمس</h3>
-              <p>رتب مراحل الشمس بالترتيب الصحيح:</p>
+              <p class="game-p">رتب مراحل الشمس بالترتيب الصحيح:</p>
               <div class="sortable-container">
                 <div class="sortable-list">
                   <div class="sortable-item" data-order="1">
@@ -534,7 +559,9 @@
             <!-- لعبة "طبيب الفرعون" -->
             <div id="pharaoh-doctor-game" class="game hidden">
               <h3>طبيب الفرعون</h3>
-              <p>الفرعون عنده جرح، اختر الأدوات الصحيحة لعلاجه:</p>
+              <p class="game-p">
+                الفرعون عنده جرح، اختر الأدوات الصحيحة لعلاجه:
+              </p>
               <div class="tools-container">
                 <div class="tool-option" data-correct="true">
                   <div class="image-placeholder small">
@@ -575,7 +602,7 @@
             <!-- لعبة "الأعشاب الفرعونية" -->
             <div id="herbs-matching-game" class="game hidden">
               <h3>الأعشاب الفرعونية</h3>
-              <p>اطب بين النبات واستخدامه الطبي:</p>
+              <p class="game-p">اطب بين النبات واستخدامه الطبي:</p>
               <div class="herbs-matching-container">
                 <div class="herbs-column">
                   <div class="herb-item" data-herb="حلبة">
@@ -623,7 +650,7 @@
             <!-- لعبة "تحنيط افتراضي" -->
             <div id="mummification-steps-game" class="game hidden">
               <h3>مراحل التحنيط</h3>
-              <p>رتب خطوات التحنيط بالترتيب الصحيح:</p>
+              <p class="game-p">رتب خطوات التحنيط بالترتيب الصحيح:</p>
               <div class="steps-container">
                 <div class="steps-list">
                   <div class="step-item" data-step="3">
@@ -683,115 +710,6 @@
               <button class="btn-secondary back-to-games-btn">
                 العودة إلى الألعاب
               </button>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-
-    <!-- قسم مختبر الحضارة المصرية القديمة -->
-    <div id="lab-section" class="screen">
-      <div class="container">
-        <header>
-          <div class="header-content">
-            <h1>
-              <i class="fas fa-flask"></i> مختبر الحضارة المصرية القديمة
-              التجريبي
-            </h1>
-            <div class="header-controls">
-              <button id="music-toggle-global" class="music-btn">
-                <i class="fas fa-volume-up"></i>
-              </button>
-              <button class="back-btn">
-                <i class="fas fa-arrow-right"></i> الرئيسية
-              </button>
-            </div>
-          </div>
-        </header>
-
-        <main>
-          <div class="experiments">
-            <div class="experiment">
-              <h3><i class="fas fa-sun"></i> صنع مزولة</h3>
-              <div class="content-card">
-                <div class="content-image">
-                  <div class="image-placeholder">
-                    <i class="fas fa-clock"></i>
-                    <p>المزولة</p>
-                  </div>
-                </div>
-                <div class="content-text">
-                  <h4>الأدوات المطلوبة:</h4>
-                  <ul>
-                    <li>كوب ورقي</li>
-                    <li>عصا صغيرة</li>
-                    <li>ورقة مقوى</li>
-                  </ul>
-                  <h4>الطريقة:</h4>
-                  <ol>
-                    <li>اقلب الكوب وضع العصا في قاعدته</li>
-                    <li>ضع الكوب في مكان مشمس</li>
-                    <li>راقب حركة ظل العصا على الورقة</li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-
-            <div class="experiment">
-              <h3><i class="fas fa-apple-alt"></i> تجربة التحنيط البسيطة</h3>
-              <div class="content-card">
-                <div class="content-image">
-                  <div class="image-placeholder">
-                    <i class="fas fa-apple-alt"></i>
-                    <p>تفاحة وملح</p>
-                  </div>
-                </div>
-                <div class="content-text">
-                  <h4>الأدوات المطلوبة:</h4>
-                  <ul>
-                    <li>قطعة تفاح</li>
-                    <li>ملح عادي</li>
-                    <li>وعاء زجاجي</li>
-                  </ul>
-                  <h4>الطريقة:</h4>
-                  <ol>
-                    <li>قطع التفاحة إلى نصفين</li>
-                    <li>ضع أحد النصفين في الوعاء مع الملح</li>
-                    <li>اترك النصف الآخر في الهواء</li>
-                    <li>راقب بعد عدة أيام لترى الفرق!</li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-
-            <div class="experiment">
-              <h3>
-                <i class="fas fa-palette"></i> ألوان طبيعية مثل الحضارة المصرية
-                القديمة
-              </h3>
-              <div class="content-card">
-                <div class="content-image">
-                  <div class="image-placeholder">
-                    <i class="fas fa-paint-brush"></i>
-                    <p>الألوان الطبيعية</p>
-                  </div>
-                </div>
-                <div class="content-text">
-                  <h4>الأدوات المطلوبة:</h4>
-                  <ul>
-                    <li>بنجر (لون أحمر)</li>
-                    <li>كركم (لون أصفر)</li>
-                    <li>سبانخ (لون أخضر)</li>
-                  </ul>
-                  <h4>الطريقة:</h4>
-                  <ol>
-                    <li>اهرس كل نوع من النباتات في وعاء منفصل</li>
-                    <li>أضف قليلًا من الماء</li>
-                    <li>صفّي الخليط للحصول على السائل الملون</li>
-                    <li>استخدمه للرسم على الورق!</li>
-                  </ol>
-                </div>
-              </div>
             </div>
           </div>
         </main>
