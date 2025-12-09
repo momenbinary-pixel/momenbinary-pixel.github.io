@@ -109,10 +109,14 @@
             </div>
 
             <div class="content-text">
-              <button class="sound-toggle" onclick="toggleSound()">
-                <span id="soundIcon">🔊</span>
-              </button>
-              <audio id="voicePlayer" src="audio/who.mp3"></audio>
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/who.mp3" loop></audio>
+              </div>
+
               <h2>أهلاً بك في متحف الطب والفلك في الحضارة المصرية القديمة!</h2>
               <p>
                 هنا ستتعرّف على أسرار الحضارة المصرية القديمة في الطب والفلك،
@@ -243,10 +247,14 @@
           <div class="games-container">
             <!-- لعبة المطابقة -->
             <div class="game-card">
-              <button class="sound-toggle" onclick="toggleSound()">
-                <span id="soundIcon">🔊</span>
-              </button>
-              <audio id="voicePlayer" src="audio/h.mp3"></audio>
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/h.mp3" loop></audio>
+              </div>
+
               <h3><i class="fas fa-puzzle-piece"></i> لعبة المطابقة</h3>
               <p>مطابقة صورة الأداة باسمها (مثل مبضع - ميزان - عين حورس)</p>
               <button class="btn-primary play-game-btn" data-game="matching">
@@ -254,7 +262,6 @@
               </button>
             </div>
 
-            
             <!-- لعبة أين النجمة؟ -->
             <!-- <div class="game-card">
               <h3><i class="fas fa-star"></i> لعبة أين النجمة؟</h3>
@@ -277,10 +284,13 @@
 
             <!-- لعبة "اختار صورة النهار" -->
             <div class="game-card">
-              <button class="sound-toggle" onclick="toggleSound()">
-                <span id="soundIcon">🔊</span>
-              </button>
-              <audio id="voicePlayer" src="audio/h.mp3"></audio>
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/h.mp3" loop></audio>
+              </div>
               <h3><i class="fas fa-sun"></i> اختار صورة النهار</h3>
               <p>أين يمكننا رؤية الشمس؟ اختار بين صورة النهار والليل</p>
               <button class="btn-primary play-game-btn" data-game="day-night">
@@ -301,10 +311,13 @@
 
             <!-- لعبة "ترتيب مراحل الشمس" -->
             <div class="game-card">
-              <button class="sound-toggle" onclick="toggleSound()">
-                <span id="soundIcon">🔊</span>
-              </button>
-              <audio id="voicePlayer" src="audio/h.mp3"></audio>
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/h.mp3" loop></audio>
+              </div>
               <h3><i class="fas fa-sun"></i> مراحل الشمس</h3>
               <p>رتب مراحل الشمس: الشروق - الظهر - الغروب</p>
               <button class="btn-primary play-game-btn" data-game="sun-stages">
@@ -329,10 +342,13 @@
 
             <!-- لعبة "الأعشاب الفرعونية" -->
             <div class="game-card">
-              <button class="sound-toggle" onclick="toggleSound()">
-                <span id="soundIcon">🔊</span>
-              </button>
-              <audio id="voicePlayer" src="audio/h.mp3"></audio>
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/h.mp3" loop></audio>
+              </div>
               <h3><i class="fas fa-leaf"></i> الأعشاب الفرعونية</h3>
               <p>اطب بين النبات واستخدامه الطبي عند الحضارة المصرية القديمة</p>
               <button
@@ -344,10 +360,13 @@
 
             <!-- لعبة "تحنيط افتراضي" -->
             <div class="game-card">
-              <button class="sound-toggle" onclick="toggleSound()">
-                <span id="soundIcon">🔊</span>
-              </button>
-              <audio id="voicePlayer" src="audio/h.mp3"></audio>
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/h.mp3" loop></audio>
+              </div>
               <h3><i class="fas fa-mummy"></i> مراحل التحنيط</h3>
               <p>رتب خطوات التحنيط بشكل مبسط وسهل</p>
               <button
@@ -1031,5 +1050,25 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+      document.querySelectorAll(".sound-container").forEach((container) => {
+        let soundOn = false;
+        const audio = container.querySelector(".sound-player");
+        const icon = container.querySelector(".sound-icon");
+        const button = container.querySelector(".sound-toggle");
+
+        button.addEventListener("click", () => {
+          if (!soundOn) {
+            audio.play();
+            icon.textContent = "🔊";
+            soundOn = true;
+          } else {
+            audio.pause();
+            icon.textContent = "🔇";
+            soundOn = false;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
