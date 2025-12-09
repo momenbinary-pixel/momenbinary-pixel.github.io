@@ -1255,3 +1255,26 @@ function setupTeacherSection() {
       soundOn = false;
     }
   }
+  
+  document.querySelectorAll(".video-toggle").forEach(button => {
+  const parent = button.parentElement;
+  const video = parent.querySelector(".tour-video");
+
+  button.addEventListener("click", () => {
+
+    // If video is hidden → turn ON
+    if (video.style.display === "none" || video.style.display === "") {
+      video.style.display = "block";
+      video.play();
+      button.innerHTML = '<i class="fas fa-pause"></i>';
+    }
+
+    // If video is showing → turn OFF
+    else {
+      video.pause();
+      video.currentTime = 0;
+      video.style.display = "none";
+      button.innerHTML = '<i class="fas fa-play"></i>';
+    }
+  });
+});
