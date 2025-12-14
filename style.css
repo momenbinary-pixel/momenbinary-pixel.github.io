@@ -1303,3 +1303,21 @@ header h1 {
   object-fit: contain;
   background: #000;
 }
+
+
+.image-placeholder.small {
+  width: 120px;
+  height: 120px;
+  border-radius: 14px;
+  background: #f3e2bf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-img {
+  width: 1200px;
+  height: 120px;
+  object-fit: contain;
+  pointer-events: none; /* مهم للسحب */
+}
