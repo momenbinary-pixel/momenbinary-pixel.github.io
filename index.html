@@ -433,10 +433,68 @@
                 <i class="fas fa-play"></i> العب الآن
               </button>
             </div>
+
+
+            <div class="game-card">
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/ta7.ogg" loop></audio>
+              </div>
+              <h3><i class="fas fa-mummy"></i> 
+طرق العلاج في الحضاره المصرية القديمة 
+             </h3>
+              <p>
+                
+ نشاط عن طرق العلاج في الحضاره المصرية القديمة 
+              </p>
+              <button
+                class="btn-primary play-game-btn"
+                data-game="mummification2-steps">
+                <i class="fas fa-play"></i> العب الآن
+              </button>
+            </div>
+            
           </div>
 
           <!-- منطقة الألعاب التفاعلية -->
           <div id="game-area" class="hidden">
+            
+            <div id="mummification2-steps-game" class="game hidden">
+  <h3>
+    طرق العلاج في الحضاره المصرية القديمة
+  </h3>
+  <p class="game-p">
+ نشاط عن طرق العلاج في الحضاره المصرية القديمة 
+  </p>
+
+  <div class="iframe-game-wrapper">
+    <!-- Start Overlay -->
+    <div class="iframe-overlay" id="start-mummy-game">
+      <i class="fas fa-play-circle"></i>
+      <!-- <button class="btn-primary">
+        ابدأ اللعبة
+      </button> -->
+    </div>
+
+    <!-- Wordwall Game -->
+    <iframe
+      id="mummy-iframe"
+      src="https://wordwall.net/embed/e7194f6b926e461b8fb45ec31e8e9cc4?themeId=4&templateId=3&fontStackId=0"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <button class="btn-secondary back-to-games-btn">
+    العودة إلى الألعاب
+  </button>
+</div>
+
+            
+            
             <div id="matching-game" class="game hidden">
               <h3>لعبة المطابقة</h3>
               <p class="game-p">اسحب الصورة إلى اسمها الصحيح!</p>

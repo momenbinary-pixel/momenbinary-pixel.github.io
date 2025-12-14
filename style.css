@@ -1195,3 +1195,30 @@ header h1 {
 .story-image.video video {
   border-radius: 10px;
 }
+
+/* تكبير لعبة Wordwall */
+.iframe-game-wrapper {
+  max-width: 900px;      /* حجم كبير للديسكتوب */
+  width: 100%;
+  margin: 0 auto 30px;
+}
+
+.iframe-game-wrapper iframe {
+  width: 100%;
+  height: 520px;         /* الارتفاع الأساسي */
+  border-radius: 18px;
+  border: none;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+  .iframe-game-wrapper iframe {
+    height: 420px;
+  }
+}
+
+@media (max-width: 480px) {
+  .iframe-game-wrapper iframe {
+    height: 360px;
+  }
+}
