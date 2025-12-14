@@ -330,6 +330,7 @@ header h1 {
 
 .tour-content p {
     margin-bottom: 15px;
+    font-size: 1.1rem;
 }
 
 .more-info {
@@ -1169,4 +1170,28 @@ header h1 {
   align-items: center;
   cursor: pointer;
   transition: 0.2s;
+}
+
+
+
+.story-image {
+  background: linear-gradient(135deg, #d4a762, #f0c674);
+  transition: 0.3s;
+}
+
+.story-card:hover .story-image {
+  transform: scale(1.02);
+}
+
+.story-image.video {
+  background: #2c3e50;
+  position: relative;
+}
+
+.story-image.video .video-toggle {
+  box-shadow: 0 0 20px rgba(212,167,98,.6);
+}
+
+.story-image.video video {
+  border-radius: 10px;
 }
