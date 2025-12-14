@@ -1,5 +1,8 @@
 // الانتقال بين أقسام الموقع
 document.addEventListener("DOMContentLoaded", function () {
+  // تتبع الصوتيات قيد التشغيل حالياً
+  window.currentSounds = [];
+  window.currentVideos = [];
   // عناصر التنقل
   const navCards = document.querySelectorAll(".nav-card");
   const backButtons = document.querySelectorAll(".back-btn");
@@ -71,6 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // أزرار العودة
   backButtons.forEach((button) => {
     button.addEventListener("click", function () {
+      // إيقاف جميع الأصوات والفيديوهات قبل العودة
+      stopAllMedia();
+
       // العودة للشاشة الرئيسية مع إظهار التنقل
       document.querySelector(".start-adventure").classList.add("hidden");
       document.querySelector(".navigation-preview").classList.remove("hidden");
@@ -192,6 +198,9 @@ function updateMusicButtons() {
 
 // عرض قسم معين وإخفاء الآخرين
 function showSection(sectionId) {
+  // إيقاف جميع الأصوات والفيديوهات قبل تغيير الصفحة
+  stopAllMedia();
+
   // إخفاء جميع الأقسام
   const allSections = document.querySelectorAll(".screen");
   allSections.forEach((section) => {
@@ -223,6 +232,52 @@ function showSection(sectionId) {
   }
 }
 
+// دالة لإيقاف جميع الوسائط (الأصوات والفيديوهات)
+function stopAllMedia() {
+  // إيقاف جميع عناصر الصوت غير الموسيقى الخلفية
+  const allAudioElements = document.querySelectorAll("audio");
+  allAudioElements.forEach((audio) => {
+    if (audio.id !== "background-music") {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
+
+  // إيقاف جميع مقاطع الفيديو
+  const allVideoElements = document.querySelectorAll("video");
+  allVideoElements.forEach((video) => {
+    if (!video.paused) {
+      video.pause();
+      video.currentTime = 0;
+      // تحديث زر التشغيل المرتبط بهذا الفيديو
+      const toggleButton = video.parentElement.querySelector(".video-toggle");
+      if (toggleButton) {
+        toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    }
+  });
+
+  // إعادة تعيين حالة أزرار الصوت
+  document.querySelectorAll(".sound-container").forEach((container) => {
+    const icon = container.querySelector(".sound-icon");
+    if (icon) {
+      icon.textContent = "🔊";
+    }
+
+    // إعادة تعيين حالة listenerAttached للحاوية
+    container.dataset.listenerAttached = "false";
+  });
+
+  // إعادة تعيين حالة زر الصوت الخاص بالطبيب
+  const doctorSoundIcon = document.getElementById("soundIcon");
+  if (doctorSoundIcon) {
+    doctorSoundIcon.textContent = "🔊";
+  }
+
+  // إعادة تعيين متغير soundOn العام
+  window.soundOn = false;
+}
+
 // إعداد الألعاب التفاعلية
 function setupGames() {
   const playGameButtons = document.querySelectorAll(".play-game-btn");
@@ -233,6 +288,9 @@ function setupGames() {
   playGameButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const gameType = this.getAttribute("data-game");
+
+      // إيقاف جميع الأصوات والفيديوهات قبل بدء اللعبة
+      stopAllMedia();
 
       // إخفاء جميع الألعاب
       document.querySelectorAll(".game").forEach((game) => {
@@ -274,6 +332,9 @@ function setupGames() {
 
 // إعادة تعيين منطقة الألعاب
 function resetGameArea() {
+  // إيقاف جميع الأصوات والفيديوهات في منطقة الألعاب
+  stopAllMedia();
+
   const gameArea = document.getElementById("game-area");
   const gamesContainer = document.querySelector(".games-container");
 
@@ -1128,6 +1189,9 @@ function loadStory(storyType) {
 
 // إعادة تعيين مشغل القصص
 function resetStoryPlayer() {
+  // إيقاف جميع الأصوات والفيديوهات في منطقة القصص
+  stopAllMedia();
+
   const storyPlayer = document.getElementById("story-player");
   const storiesContainer = document.querySelector(".stories");
 
@@ -1239,31 +1303,61 @@ function setupTeacherSection() {
   });
 }
 
- let soundOn = false;
+let soundOn = false;
 
-  function toggleSound() {
-    const audio = document.getElementById("voicePlayer");
-    const icon = document.getElementById("soundIcon");
+function toggleSound() {
+  const audio = document.getElementById("voicePlayer");
+  const icon = document.getElementById("soundIcon");
 
-    if (!soundOn) {
-      audio.play();
-      icon.textContent = "🔊";
-      soundOn = true;
-    } else {
-      audio.pause();
-      icon.textContent = "🔇";
-      soundOn = false;
-    }
+  if (!soundOn) {
+    // إيقاف جميع الأصوات الأخرى قبل تشغيل هذا الصوت
+    stopAllMedia(audio);
+    audio.play();
+    icon.textContent = "🔊";
+    soundOn = true;
+  } else {
+    audio.pause();
+    icon.textContent = "🔇";
+    soundOn = false;
   }
-  
-  document.querySelectorAll(".video-toggle").forEach(button => {
+}
+
+// دالة لإيقاف جميع الأصوات باستثناء صوت معين
+function stopOtherSounds(exceptAudioElement) {
+  // إيقاف جميع عناصر الصوت غير الموسيقى الخلفية والعنصر المحدد
+  const allAudioElements = document.querySelectorAll("audio");
+  allAudioElements.forEach((audio) => {
+    if (audio.id !== "background-music" && audio !== exceptAudioElement) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
+}
+
+// دالة لإيقاف جميع مقاطع الفيديو باستثناء واحدة
+function stopAllVideos(exceptVideo) {
+  document.querySelectorAll("video").forEach((video) => {
+    if (video !== exceptVideo && !video.paused) {
+      video.pause();
+      // تحديث زر التشغيل المرتبط بهذا الفيديو
+      const toggleButton = video.parentElement.querySelector(".video-toggle");
+      if (toggleButton) {
+        toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    }
+  });
+}
+
+document.querySelectorAll(".video-toggle").forEach((button) => {
   const parent = button.parentElement;
   const video = parent.querySelector(".tour-video");
 
   button.addEventListener("click", () => {
-
     // If video is hidden → turn ON
     if (video.style.display === "none" || video.style.display === "") {
+      // إيقاف جميع مقاطع الفيديو الأخرى قبل تشغيل هذا الفيديو
+      stopAllVideos(video);
+
       video.style.display = "block";
       video.play();
       button.innerHTML = '<i class="fas fa-pause"></i>';

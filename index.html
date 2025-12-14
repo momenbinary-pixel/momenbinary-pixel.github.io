@@ -939,7 +939,7 @@
             <!-- <div class="story-card" data-story="imhotep">
               <div class="story-image">
                 <i class="fas fa-user-md"></i>
-                <p>إيمحوتب</p>
+                <p>这个地图</p>
               </div>
               <div class="story-content">
                 <h3>الطبيب إيمحوتب</h3>
@@ -1233,24 +1233,72 @@
 
     <script src="script.js"></script>
     <script>
-      document.querySelectorAll(".sound-container").forEach((container) => {
-        let soundOn = false;
-        const audio = container.querySelector(".sound-player");
-        const icon = container.querySelector(".sound-icon");
-        const button = container.querySelector(".sound-toggle");
-
-        button.addEventListener("click", () => {
-          if (!soundOn) {
-            audio.play();
-            icon.textContent = "🔊";
-            soundOn = true;
-          } else {
+      // دالة لإيقاف جميع الوسائط (الأصوات والفيديوهات) باستثناء عنصر معين
+      function stopAllMedia(exceptElement) {
+        // إيقاف جميع عناصر الصوت غير الموسيقى الخلفية والعنصر المحدد
+        const allAudioElements = document.querySelectorAll('audio');
+        allAudioElements.forEach(audio => {
+          if (audio.id !== 'background-music' && audio !== exceptElement) {
             audio.pause();
-            icon.textContent = "🔇";
-            soundOn = false;
+            audio.currentTime = 0;
           }
         });
+        
+        // إيقاف جميع مقاطع الفيديو باستثناء الفيديو المحدد
+        const allVideoElements = document.querySelectorAll('video');
+        allVideoElements.forEach(video => {
+          if (video !== exceptElement && !video.paused) {
+            video.pause();
+            // تحديث زر التشغيل المرتبط بهذا الفيديو
+            const toggleButton = video.parentElement.querySelector('.video-toggle');
+            if (toggleButton) {
+              toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+          }
+        });
+      }
+      
+      // التأكد من أن DOM تم تحميله بالكامل قبل إعداد مستمعي الأحداث
+      document.addEventListener('DOMContentLoaded', function() {
+        // إعداد مستمعي الأحداث لجميع حاويات الصوت الموجودة حالياً
+        setupSoundContainers();
+        
+        // إعداد مستمع للأحداث عند تغيير محتوى الصفحة
+        document.addEventListener('click', function() {
+          // تأخير بسيط للسماح بتحديث DOM
+          setTimeout(setupSoundContainers, 100);
+        });
       });
+      
+      // دالة لإعداد مستمعي الأحداث لحاويات الصوت
+      function setupSoundContainers() {
+        document.querySelectorAll(".sound-container").forEach((container) => {
+          // التحقق مما إذا كان المستمع مرفقاً بالفعل
+          if (!container.dataset.listenerAttached) {
+            let soundOn = false;
+            const audio = container.querySelector(".sound-player");
+            const icon = container.querySelector(".sound-icon");
+            const button = container.querySelector(".sound-toggle");
+
+            button.addEventListener("click", () => {
+              if (!soundOn) {
+                // إيقاف جميع الأصوات الأخرى قبل تشغيل هذا الصوت
+                stopAllMedia(audio);
+                audio.play();
+                icon.textContent = "🔊";
+                soundOn = true;
+              } else {
+                audio.pause();
+                icon.textContent = "🔇";
+                soundOn = false;
+              }
+            });
+            
+            // وضع علامة على أن المستمع مرفق
+            container.dataset.listenerAttached = "true";
+          }
+        });
+      }
     </script>
   </body>
 </html>
