@@ -295,6 +295,75 @@
 
         <main>
           <div class="games-container">
+
+            <!-- لعبة "تحنيط افتراضي" -->
+            <div class="game-card">
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/ta7.ogg" loop></audio>
+              </div>
+              <h3><i class="fas fa-mummy"></i> مراحل التحنيط</h3>
+              <p>
+                رتب خطوات التحنيط بشكل مبسط وسهل
+              </p>
+              <button
+                class="btn-primary play-game-btn"
+                data-game="mummification-steps">
+                <i class="fas fa-play"></i> العب الآن
+              </button>
+            </div>
+
+
+                        <div class="game-card">
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/ta7.ogg" loop></audio>
+              </div>
+              <h3><i class="fas fa-mummy"></i> 
+ خطوات التحنيط 
+              </h3>
+              <p>
+                
+                رتب خطوات التحنيط بشكل مبسط وسهل
+              </p>
+              <button
+                class="btn-primary play-game-btn"
+                data-game="mummification3-steps">
+                <i class="fas fa-play"></i> العب الآن
+              </button>
+            </div>
+
+            <div class="game-card">
+              <div class="sound-container">
+                <button class="sound-toggle">
+                  <span class="sound-icon">🔊</span>
+                </button>
+
+                <audio class="sound-player" src="audio/ta7.ogg" loop></audio>
+              </div>
+              <h3><i class="fas fa-mummy"></i> 
+طرق العلاج في الحضاره المصرية القديمة 
+             </h3>
+              <p>
+                
+ نشاط عن طرق العلاج في الحضاره المصرية القديمة 
+              </p>
+              <button
+                class="btn-primary play-game-btn"
+                data-game="mummification2-steps">
+                <i class="fas fa-play"></i> العب الآن
+              </button>
+            </div>
+
+
+
+
             <!-- لعبة المطابقة -->
             <div class="game-card">
               <div class="sound-container">
@@ -415,47 +484,6 @@
                 <i class="fas fa-play"></i> العب الآن
               </button>
             </div>
-
-            <!-- لعبة "تحنيط افتراضي" -->
-            <div class="game-card">
-              <div class="sound-container">
-                <button class="sound-toggle">
-                  <span class="sound-icon">🔊</span>
-                </button>
-
-                <audio class="sound-player" src="audio/ta7.ogg" loop></audio>
-              </div>
-              <h3><i class="fas fa-mummy"></i> مراحل التحنيط</h3>
-              <p>رتب خطوات التحنيط بشكل مبسط وسهل</p>
-              <button
-                class="btn-primary play-game-btn"
-                data-game="mummification-steps">
-                <i class="fas fa-play"></i> العب الآن
-              </button>
-            </div>
-
-
-            <div class="game-card">
-              <div class="sound-container">
-                <button class="sound-toggle">
-                  <span class="sound-icon">🔊</span>
-                </button>
-
-                <audio class="sound-player" src="audio/ta7.ogg" loop></audio>
-              </div>
-              <h3><i class="fas fa-mummy"></i> 
-طرق العلاج في الحضاره المصرية القديمة 
-             </h3>
-              <p>
-                
- نشاط عن طرق العلاج في الحضاره المصرية القديمة 
-              </p>
-              <button
-                class="btn-primary play-game-btn"
-                data-game="mummification2-steps">
-                <i class="fas fa-play"></i> العب الآن
-              </button>
-            </div>
             
           </div>
 
@@ -484,6 +512,36 @@
       id="mummy-iframe"
       src="https://wordwall.net/embed/e7194f6b926e461b8fb45ec31e8e9cc4?themeId=4&templateId=3&fontStackId=0"
       loading="lazy"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <button class="btn-secondary back-to-games-btn">
+    العودة إلى الألعاب
+  </button>
+</div>
+
+<div id="mummification3-steps-game" class="game hidden">
+  <h3>
+ خطوات التحنيط 
+  </h3>
+  <p class="game-p">
+                رتب خطوات التحنيط بشكل مبسط وسهل
+  </p>
+
+  <div class="iframe-game-wrapper">
+    <!-- Start Overlay -->
+    <div class="iframe-overlay" id="start-mummy-game">
+      <i class="fas fa-play-circle"></i>
+      <!-- <button class="btn-primary">
+        ابدأ اللعبة
+      </button> -->
+    </div>
+
+    <!-- Wordwall Game -->
+    <iframe
+      id="mummy-iframe"
+      src="https://wordwall.net/embed/414432c2f1634837b03a249a4ac8901b?themeId=57&templateId=5&fontStackId=0"      loading="lazy"
       allowfullscreen>
     </iframe>
   </div>
